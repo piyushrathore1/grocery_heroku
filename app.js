@@ -6,7 +6,7 @@ const bodyparser = require('body-parser');
 const app = express();
 app.use(bodyparser.json());
 app.get("/",(req,res)=>{
-    res.send("samundar");
+    res.send("welcome to my project mediApp");
 })
 
 const admin = require("./route/admin");

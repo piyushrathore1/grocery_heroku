@@ -22,3 +22,6 @@ app.use('/doctor/',doctor);
 /*app.listen(3000,()=>{
     console.log("server is connected");
 })*/
+app.listen(process.env.PORT || 5000,()=>{
+    console.log("server is connected");
+})

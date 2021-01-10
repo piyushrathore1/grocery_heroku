@@ -5,9 +5,9 @@ const bodyparser = require('body-parser');
 
 const app = express();
 app.use(bodyparser.json());
-/*app.get("/",(req,res)=>{
+app.get("/",(req,res)=>{
     res.send("samundar");
-})*/
+})
 
 const admin = require("./route/admin");
 app.use('/admin/',admin);

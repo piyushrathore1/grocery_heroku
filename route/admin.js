@@ -43,9 +43,11 @@ router.get('/getAllAdmin',(req,res)=>{
     var email_id=req.body.email_id;
     var password=req.body.password;
     var status=req.body.status;
-    //Single FIle Uploaded 
+    //Single FIle Uploaded upload.single('upload_documents')
     if(req.file){
         var upload_documents=req.file.path
+    }else{
+        console.log("file path is not set");
     }
     //Multipal File Uploaded
    /* if(req.files){
@@ -58,6 +60,7 @@ router.get('/getAllAdmin',(req,res)=>{
     }*/
     try{
         //console.log(req.file.path);
+        // image upload on cloud
         const result = await cloudinary.uploader.upload(req.file.path);
         //console.log(result);
         var upload_documents=result.secure_url;
@@ -98,7 +101,7 @@ router.delete("/deleteAdmin/:id",(req,res)=>{
     }).catch((err)=>{console.warn(err)}) 
 });*/
 
-router.put('/updateAdmin/:id',(req,res)=>{
+router.put('/updateAdmin/:id',upload.single('upload_documents'),async(req,res)=>{
     var id={_id:req.params.id};
     //var email_id={email_id:req.body.email_id};
     //var password={password:req.body.password};
@@ -107,10 +110,56 @@ router.put('/updateAdmin/:id',(req,res)=>{
     var email_id=req.body.email_id;
     var password=req.body.password;
     var status=req.body.status;
+    //samu change
+    if(req.file){
+        var upload_documents=req.file.path
+    }
     try{
+        if(upload_documents)
+        {
+            console.log("selcted  file to update");
+            //upload_documents=req.body.upload_documents;
+            const result = await cloudinary.uploader.upload(req.file.path);
+            
+            upload_documents=result.secure_url;
+            var cloudinary_id=result.public_id;
+           // console.log("s1",upload_documents);
+            //console.log("s2",cloudinary_id);
+           userQueries.updateAdmin({_id:req.params.id},email_id,password,status,upload_documents,cloudinary_id);
+    
+              const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+              res.send(a);
+              console.log("Update Sussesful with file");
+        }else{
+            console.log("no file selecte to update")
+            var upload_documents;
+            var cloudinary_id;
+            admin_schema.find({_id:id},(err,users)=>{
+                if(err) console.warn("error",err);
+                // console.log(users);
+                 users.forEach((day,index)=>{
+                    upload_documents= day.upload_documents;
+                    cloudinary_id= day.cloudinary_id;
+                  //  console.log(upload_documents);
+                   // console.log(cloudinary_id);
+                    userQueries.updateAdmin({_id:req.params.id},email_id,password,status,upload_documents,cloudinary_id);
+                })})
+            
+            const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+            res.send(a);
+            console.log("Update Sussesful without file");
+            
+        }}
+        catch(err){
+             console.log("Error in update",err);
+            const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+            res.send(a);
+        }
+    //
+   // try{
         //console.log(email_id);
        // userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
-       userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
+      /* userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
         const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
         res.send(a);
         console.log("Update Sussesful");
@@ -119,7 +168,7 @@ router.put('/updateAdmin/:id',(req,res)=>{
         console.log("Error in update",err);
         const a=[{'data':0,'success':false,'message':'Data Not Update'}];
         res.send(a);
-    }
+    }*/
   
 })
 

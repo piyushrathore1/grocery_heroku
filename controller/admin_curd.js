@@ -30,15 +30,17 @@ const userQueries ={
         
     },
 
-    updateAdmin:(id,email_id,password,status)=>{
+    updateAdmin:(id,email_id,password,status,upload_documents,cloudinary_id)=>{
         //console.log(email_id);
-        console.log("come to update");
+        console.log("come to update ");
         insertmodel.updateOne({_id:id},
             {$set:{
                // a,b,c
-                email_id:email_id,
-                password:password,
-                status:status
+                email_id : email_id,
+                password : password,
+                status   : status,
+                upload_documents : upload_documents,
+                cloudinary_id    : cloudinary_id,
                 } 
             }).then((result)=>{
                 

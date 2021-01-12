@@ -5,8 +5,9 @@ const bodyparser = require('body-parser');
 
 const app = express();
 app.use(bodyparser.json());
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+
+app.use(bodyparser.urlencoded({ extended: true }));
+
 app.get("/",(req,res)=>{
     res.send("welcome to my project mediApp");
 })
@@ -17,7 +18,8 @@ app.use('/admin/',admin);
 const doctor = require("./route/doctor");
 app.use('/doctor/',doctor);
 
-
+app.use(express.json());
+//app.use(express.urlencoded({extended:true}));
 
 /*app.listen(3000,()=>{
     console.log("server is connected");

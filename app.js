@@ -9,7 +9,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.get("/",(req,res)=>{
-    res.send("welcome to my project mediApp");
+    res.send("welcome to my project Fammhouse");
 })
 
 const admin = require("./route/admin");

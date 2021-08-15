@@ -1,25 +1,26 @@
 const conn = require("../config/db_config");
-const insertmodel = require('../schema/role_schema');
+const insertmodel = require('../schema/hsn_schema');
  
 const userQueries ={
-    insertRole:(DesignationName,status) => {
+    insertHsn:(Code,Tax,status) => {
         let userObj= {
             //_id:_id,
-            DesignationName:DesignationName,
+            Code:Code,
+            Tax:Tax,
             status:status,
         }
    
        if(insertmodel.create(userObj)){
-           console.log("Role Add Successful");
+           console.log("Hsn Add Successful");
        } 
        else{
-        console.warn("Role not inserted");
+        console.warn("Hsn not inserted");
        }
       
     },
 
     
-    deleteRole:(id)=>{
+    deleteHsn:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.updateOne({_id:id},
             {
@@ -33,20 +34,21 @@ const userQueries ={
         
     },
 
-    updateAdmin:(id,DesignationName,status)=>{
+    updateHsn:(id,Code,Tax,status)=>{
         //console.log(email_id);
         console.log("come to update ");
         insertmodel.updateOne({_id:id},
             {$set:{
                // a,b,c
-               DesignationName : DesignationName,
+               Code : Code,
+               Tax:Tax,
                 status   : status,
                 } 
             }).then((result)=>{
                 
             }).catch((err)=>{console.warn(err)})
     },
-    displayAdmin:(id)=>{
+    displayHsn:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.find({},(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");

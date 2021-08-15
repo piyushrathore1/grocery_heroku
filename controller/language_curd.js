@@ -1,25 +1,25 @@
 const conn = require("../config/db_config");
-const insertmodel = require('../schema/role_schema');
+const insertmodel = require('../schema/language_schema');
  
 const userQueries ={
-    insertRole:(DesignationName,status) => {
+    insertLanguage:(Name,status) => {
         let userObj= {
             //_id:_id,
-            DesignationName:DesignationName,
+            Name:Name,
             status:status,
         }
    
        if(insertmodel.create(userObj)){
-           console.log("Role Add Successful");
+           console.log("Language Add Successful");
        } 
        else{
-        console.warn("Role not inserted");
+        console.warn("record not inserted");
        }
       
     },
 
     
-    deleteRole:(id)=>{
+    deleteLanguage:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.updateOne({_id:id},
             {
@@ -33,20 +33,20 @@ const userQueries ={
         
     },
 
-    updateAdmin:(id,DesignationName,status)=>{
+    updateLanguage:(id,Name,status)=>{
         //console.log(email_id);
         console.log("come to update ");
         insertmodel.updateOne({_id:id},
             {$set:{
                // a,b,c
-               DesignationName : DesignationName,
+                Name : Name,
                 status   : status,
                 } 
             }).then((result)=>{
                 
             }).catch((err)=>{console.warn(err)})
     },
-    displayAdmin:(id)=>{
+    displayLanguage:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.find({},(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");

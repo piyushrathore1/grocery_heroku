@@ -24,12 +24,18 @@ app.use('/vendor/',vendor);
 const role = require("./route/role");
 app.use('/role/',role);
 
+const language = require("./route/language");
+app.use('/language/',language);
+
+const hsn = require("./route/hsn");
+app.use('/hsn/',hsn);
+
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));
 
 /*app.listen(3000,()=>{
     console.log("server is connected");
 })*/
-app.listen(process.env.PORT || 5000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log("server is connected");
 })

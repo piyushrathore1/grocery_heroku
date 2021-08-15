@@ -1,8 +1,8 @@
 const express = require("express");
 const router =  express.Router();
-const admin_schema = require("../schema/admin_schema");
-const userQueries = require("../controller/admin_curd");
-const upload = require("../controller/file_upload");
+const admin_schema = require("../schema/vendor_schema");
+const userQueries = require("../controller/vendor_curd");
+const upload = require("../controller/file_upload_vendor");
 const cloudinary = require("../controller/cloudinary");
 /*router.post("/insert",(req,res)=>{
     //var a = new admin_schema(req.body);   
@@ -13,7 +13,7 @@ const cloudinary = require("../controller/cloudinary");
 
 })*/
 
-router.post('/getAllAdmin',(req,res)=>{
+router.post('/getAllVendor',(req,res)=>{
     console.log("Display record:-");
     var a=[];
     var Data=[];
@@ -42,7 +42,7 @@ router.post('/getAllAdmin',(req,res)=>{
 });
 
 //router.post("/addAdmin",upload.array('upload_documents[]'),async(req,res)=>{
- router.post("/addAdmin",upload.single('upload_Photo'),async(req,res)=>{
+ router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
     var Name=req.body.Name;
     var MobileNo=req.body.MobileNo;
     var Email_id=req.body.Email_id;
@@ -70,7 +70,7 @@ router.post('/getAllAdmin',(req,res)=>{
         //console.log(result);
         var upload_documents=result.secure_url;
         var cloudinary_id=result.public_id;
-        userQueries.insertAdmin(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
+        userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
        // res.send("Record inserted");
         const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};
         res.send(a);
@@ -81,18 +81,18 @@ router.post('/getAllAdmin',(req,res)=>{
     }
 });
 
-router.post("/deleteAdmin/:id",(req,res)=>{
+router.post("/deleteVendor/:id",(req,res)=>{
     var id={_id:req.params._id};
     try{
-        //console.log(req.params._id);
-        userQueries.deleteAdmin({_id:req.params.id});
-        const a={'data':1,'success':true,'message':'Admin Data Successful Delete'};
+        console.log(req.params._id);
+        userQueries.deleteVendor({_id:req.params.id});
+        const a={'data':1,'success':true,'message':'Vendor Data Successful Delete'};
         res.send(a);
-        console.log("Admin Delete Sussesful");
+        console.log("Vendor Delete Sussesful");
     }
     catch(err){
         console.log("Error indelete",err);
-        const a=[{'data':0,'success':false,'message':'Admin Data Not Delete'}];
+        const a=[{'data':0,'success':false,'message':'Vendor Data Not Delete'}];
         res.send(a);
     }
   
@@ -106,7 +106,7 @@ router.post("/deleteAdmin/:id",(req,res)=>{
     }).catch((err)=>{console.warn(err)}) 
 });*/
 
-router.post('/updateAdmin/:id',upload.single('upload_Photo'),async(req,res)=>{
+router.post('/updateVendor/:id',upload.single('upload_documents'),async(req,res)=>{
     var id={_id:req.params.id};
     //var email_id={email_id:req.body.email_id};
     //var password={password:req.body.password};
@@ -132,9 +132,9 @@ router.post('/updateAdmin/:id',upload.single('upload_Photo'),async(req,res)=>{
             var cloudinary_id=result.public_id;
            // console.log("s1",upload_documents);
             //console.log("s2",cloudinary_id);
-           userQueries.updateAdmin({_id:req.params.id},Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
+           userQueries.updateVendor({_id:req.params.id},Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
     
-              const a={'data':1,'success':true,'message':'Admin Data Successful Update'};
+              const a={'data':1,'success':true,'message':'Vendor Data Successful Update'};
               res.send(a);
               console.log("Update Sussesful with file");
         }else{
@@ -149,10 +149,10 @@ router.post('/updateAdmin/:id',upload.single('upload_Photo'),async(req,res)=>{
                     cloudinary_id= day.cloudinary_id;
                   //  console.log(upload_documents);
                    // console.log(cloudinary_id);
-                    userQueries.updateAdmin({_id:req.params.id},Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
+                    userQueries.updateVendor({_id:req.params.id},Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
                 })})
             
-            const a={'data':1,'success':true,'message':'Admin  Data Successful Update'};
+            const a={'data':1,'success':true,'message':'Vendor Data Successful Update'};
             res.send(a);
             console.log("Update Sussesful without file");
             

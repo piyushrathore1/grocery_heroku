@@ -1,24 +1,19 @@
 const conn = require("../config/db_config");
-const insertmodel = require('../schema/admin_schema');
+const insertmodel = require('../schema/role_schema');
  
 const userQueries ={
-    insertAdmin:(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id) => {
+    insertRole:(DesignationName,status) => {
         let userObj= {
             //_id:_id,
-            Name:Name,
-            MobileNo:MobileNo,
-            Email_id:Email_id,
-            Password:Password,
+            DesignationName:DesignationName,
             status:status,
-            upload_Photo:upload_documents,
-            cloudinary_id:cloudinary_id,
         }
    
        if(insertmodel.create(userObj)){
-           console.log("Vendor Add Successful");
+           console.log("Role Add Successful");
        } 
        else{
-        console.warn("record not inserted");
+        console.warn("Role not inserted");
        }
       
     },

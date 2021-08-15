@@ -1,8 +1,8 @@
 const conn = require("../config/db_config");
-const insertmodel = require('../schema/admin_schema');
+const insertmodel = require('../schema/vendor_schema');
  
 const userQueries ={
-    insertAdmin:(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id) => {
+    insertVendor:(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id) => {
         let userObj= {
             //_id:_id,
             Name:Name,
@@ -10,7 +10,7 @@ const userQueries ={
             Email_id:Email_id,
             Password:Password,
             status:status,
-            upload_Photo:upload_documents,
+            upload_documents:upload_documents,
             cloudinary_id:cloudinary_id,
         }
    
@@ -24,7 +24,7 @@ const userQueries ={
     },
 
     
-    deleteAdmin:(id)=>{
+    deleteVendor:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.updateOne({_id:id},
             {
@@ -38,7 +38,7 @@ const userQueries ={
         
     },
 
-    updateAdmin:(id,Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id)=>{
+    updateVendor:(id,Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id)=>{
         //console.log(email_id);
         console.log("come to update ");
         insertmodel.updateOne({_id:id},
@@ -56,7 +56,7 @@ const userQueries ={
                 
             }).catch((err)=>{console.warn(err)})
     },
-    displayAdmin:(id)=>{
+    displayVendor:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.find({},(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");

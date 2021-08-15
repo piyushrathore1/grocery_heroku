@@ -18,6 +18,12 @@ app.use('/admin/',admin);
 const doctor = require("./route/doctor");
 app.use('/doctor/',doctor);
 
+const vendor = require("./route/vendor");
+app.use('/vendor/',vendor);
+
+const role = require("./route/role");
+app.use('/role/',role);
+
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));
 

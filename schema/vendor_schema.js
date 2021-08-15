@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const adminBody = new mongoose.Schema({
+const vendorBody = new mongoose.Schema({
     Name:{
         type : String,
         required : true,
@@ -18,7 +18,7 @@ const adminBody = new mongoose.Schema({
         required : true,
     },
     status:Number,
-    upload_Photo:{
+    upload_documents:{
         type:String
     },
     cloudinary_id:{
@@ -26,6 +26,6 @@ const adminBody = new mongoose.Schema({
     },
 });
 
-module.exports=mongoose.model("admin",adminBody);
+module.exports=mongoose.model("vendor",vendorBody);
 //const result = mongoose.model('admin',adminBody);
 //module.exports= result;

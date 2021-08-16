@@ -3,19 +3,19 @@ const mongoose = require("mongoose");
 const vendorBody = new mongoose.Schema({
     Name:{
         type : String,
-        required : true,
+       // required : true,
     },
     MobileNo:{
         type : String,
-        required : true,
+       // required : true,
     },
     Email_id:{
         type : String,
-        required : true,
+       // required : true,
     },
     Password:{
         type : String,
-        required : true,
+       // required : true,
     },
     status:Number,
     upload_documents:{

@@ -32,7 +32,7 @@ router.post("/addDoctor",upload.single('upload_documents'),async(req,res)=>{
        // var file_o_name=req.file.originalname;
         userQueries.insertUser(name,degree,mobile_no,alternative_mobile_no,clinic_name,clinic_address,city,state,pincode,landmark,doctor_reg_no,email_id,upload_documents,cloudinary_id);
         //res.send("Record inserted");
-        const a=[{'data':1,'success':true,'message':'Data Successful Insert'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Insert'}];
         res.send(a);
         //res.send("samundar");
         console.log("Data Insert Sussesful");
@@ -70,13 +70,13 @@ router.delete("/deleteDoctor/:id",(req,res)=>{
     try{
         console.log(id);
         userQueries.deleteDoctor({_id:req.params.id});
-        const a=[{'data':1,'success':true,'message':'Data Successful Delete'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Delete'}];
         res.send(a);
         console.log("Delete Sussesful");
     }
     catch(err){
         console.log("Error indelete",err);
-        const a=[{'data':0,'success':false,'message':'Data Not Delete'}];
+        const a=[{'Data':0,'Success':false,'Message':'Data Not Delete'}];
         res.send(a);
     }
   
@@ -125,7 +125,7 @@ router.put('/updateDoctor/:id',upload.single('upload_documents'),async(req,res)=
             clinic_name,clinic_address,city,state,pincode,landmark,
             doctor_reg_no,email_id,upload_documents,cloudinary_id);
 
-          const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+          const a=[{'Data':1,'Success':true,'Message':'Data Successful Update'}];
           res.send(a);
           console.log("Update Sussesful");
     }else{
@@ -144,14 +144,14 @@ router.put('/updateDoctor/:id',upload.single('upload_documents'),async(req,res)=
                     doctor_reg_no,email_id,upload_documents,cloudinary_id);
             })})
         
-        const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Update'}];
         res.send(a);
         console.log("Update Sussesful");
         console.log("no file selecte to update")
     }}
     catch(err){
          console.log("Error in update",err);
-        const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+        const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
         res.send(a);
     }
    /* var upload_documents;
@@ -183,13 +183,13 @@ router.put('/updateDoctor/:id',upload.single('upload_documents'),async(req,res)=
         //userQueries.updateDoctor({_id:req.params.id},name,degree,mobile_no,alternative_mobile_no,
           //  clinic_name,clinic_address,city,state,pincode,landmark,
            // doctor_reg_no,email_id);
-        //const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+        //const a=[{'Data':1,'Success':true,'Message':'Data Successful Update'}];
         //res.send(a);
         //console.log("Update Sussesful");
   /*  }
     catch(err){
         console.log("Error in update",err);
-        const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+        const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
         res.send(a);
     }*/
   

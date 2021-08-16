@@ -31,7 +31,7 @@ router.post('/getAllHsn',(req,res)=>{
             res.send(Data);
         })
        /* userQueries.displayAdmin();
-        const a=[{'data':1,'success':true,'message':'Data Successful Delete'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Delete'}];
         res.send(a);
         console.log("Delete Sussesful");*/
     }
@@ -67,13 +67,13 @@ router.post("/deleteHsn/:id",(req,res)=>{
     try{
         //console.log(req.params._id);
         userQueries.deleteHsn({_id:req.params.id});
-        const a={'data':1,'success':true,'message':'Hsn Data Successful Delete'};
+        const a={'Data':1,'Success':true,'Message':'Hsn Data Successful Delete'};
         res.send(a);
         console.log("Admin Delete Sussesful");
     }
     catch(err){
         console.log("Error indelete",err);
-        const a=[{'data':0,'success':false,'message':'Hsn Data Not Delete'}];
+        const a=[{'Data':0,'Success':false,'Message':'Hsn Data Not Delete'}];
         res.send(a);
     }
   
@@ -113,14 +113,14 @@ router.post('/updateHsn/:id',(req,res)=>{
                     userQueries.updateHsn({_id:req.params.id},Code,Tax,status);
                 })})
             
-            const a={'data':1,'success':true,'message':'Hsn  Data Successful Update'};
+            const a={'Data':1,'Success':true,'Message':'Hsn  Data Successful Update'};
             res.send(a);
             console.log("Update Sussesful without file");
             
         }
         catch(err){
              console.log("Error in update",err);
-            const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+            const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
             res.send(a);
         }
     //
@@ -128,13 +128,13 @@ router.post('/updateHsn/:id',(req,res)=>{
         //console.log(email_id);
        // userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
       /* userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
-        const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Update'}];
         res.send(a);
         console.log("Update Sussesful");
     }
     catch(err){
         console.log("Error in update",err);
-        const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+        const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
         res.send(a);
     }*/
   

@@ -31,7 +31,7 @@ router.post('/getAllVendor',(req,res)=>{
             res.send(Data);
         })
        /* userQueries.displayAdmin();
-        const a=[{'data':1,'success':true,'message':'Data Successful Delete'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Delete'}];
         res.send(a);
         console.log("Delete Sussesful");*/
     }
@@ -86,13 +86,13 @@ router.post("/deleteVendor/:id",(req,res)=>{
     try{
         console.log(req.params._id);
         userQueries.deleteVendor({_id:req.params.id});
-        const a={'data':1,'success':true,'message':'Vendor Data Successful Delete'};
+        const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Delete'};
         res.send(a);
         console.log("Vendor Delete Sussesful");
     }
     catch(err){
         console.log("Error indelete",err);
-        const a=[{'data':0,'success':false,'message':'Vendor Data Not Delete'}];
+        const a=[{'Data':0,'Success':false,'Message':'Vendor Data Not Delete'}];
         res.send(a);
     }
   
@@ -134,7 +134,7 @@ router.post('/updateVendor/:id',upload.single('upload_documents'),async(req,res)
             //console.log("s2",cloudinary_id);
            userQueries.updateVendor({_id:req.params.id},Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
     
-              const a={'data':1,'success':true,'message':'Vendor Data Successful Update'};
+              const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Update'};
               res.send(a);
               console.log("Update Sussesful with file");
         }else{
@@ -152,14 +152,14 @@ router.post('/updateVendor/:id',upload.single('upload_documents'),async(req,res)
                     userQueries.updateVendor({_id:req.params.id},Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
                 })})
             
-            const a={'data':1,'success':true,'message':'Vendor Data Successful Update'};
+            const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Update'};
             res.send(a);
             console.log("Update Sussesful without file");
             
         }}
         catch(err){
              console.log("Error in update",err);
-            const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+            const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
             res.send(a);
         }
     //
@@ -167,13 +167,13 @@ router.post('/updateVendor/:id',upload.single('upload_documents'),async(req,res)
         //console.log(email_id);
        // userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
       /* userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
-        const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Update'}];
         res.send(a);
         console.log("Update Sussesful");
     }
     catch(err){
         console.log("Error in update",err);
-        const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+        const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
         res.send(a);
     }*/
   

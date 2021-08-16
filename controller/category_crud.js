@@ -24,8 +24,9 @@ const userQueries ={
        }
       
     }, */
-    insertCategory:(req,res)=>{
-        const categorydata = new category_schema(req.body);
+    insertCategory:(req,res,upload_documents,cloudinary_id)=>{
+        
+        const categorydata = new category_schema(req.body,upload_documents,cloudinary_id);
         categorydata.save().then(() =>{
         //res.send(vendordata);
         return res.status(200).json({
@@ -38,8 +39,35 @@ const userQueries ={
     })
     },
 
-    deleteCategory:()=>{
+    displayCategory:async(req,res)=>{
+        try{
+            const alldata = await category_schema.find().populate('LanguageId');
+            //res.send(alldata);
+            return res.status(200).json({
+                Data : alldata,
+                sucess :'true'
+            })
+        }catch(e){ res.send(e)}
+    },
 
+    displaycategorybyid:async(req,res)=>{
+        try{
+            const _id = req.params.id;
+            const alldata = await category_schema.findById(_id,(error, data) => {
+                if (error) {
+                  return next(error)
+                } else {
+                  //res.json(data)
+                }
+              });
+           // res.send(alldata);
+            return res.status(200).json({
+                Data: alldata,
+                sucess :'true',
+            })  
+    
+    
+        }catch(e){ res.send(e)}
     }
 
     

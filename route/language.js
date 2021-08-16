@@ -31,7 +31,7 @@ router.post('/getAllLanguage',(req,res)=>{
             res.send(Data);
         })
        /* userQueries.displayAdmin();
-        const a=[{'data':1,'success':true,'message':'Data Successful Delete'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Delete'}];
         res.send(a);
         console.log("Delete Sussesful");*/
     }
@@ -83,13 +83,13 @@ router.post("/deleteLanguage/:id",(req,res)=>{
     try{
         //console.log(req.params._id);
         userQueries.deleteLanguage({_id:req.params.id});
-        const a={'data':1,'success':true,'message':'Language Data Successful Delete'};
+        const a={'Data':1,'Success':true,'Message':'Language Data Successful Delete'};
         res.send(a);
         console.log("Language Delete Sussesful");
     }
     catch(err){
         console.log("Error indelete",err);
-        const a=[{'data':0,'success':false,'message':'Language Data Not Delete'}];
+        const a=[{'Data':0,'Success':false,'Message':'Language Data Not Delete'}];
         res.send(a);
     }
   
@@ -131,7 +131,7 @@ router.post('/updateLanguage/:id',(req,res)=>{
         //     //console.log("s2",cloudinary_id);
         //    userQueries.updateAdmin({_id:req.params.id},Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
     
-        //       const a={'data':1,'success':true,'message':'Admin Data Successful Update'};
+        //       const a={'Data':1,'Success':true,'Message':'Admin Data Successful Update'};
         //       res.send(a);
         //       console.log("Update Sussesful with file");
         // }else{
@@ -149,7 +149,7 @@ router.post('/updateLanguage/:id',(req,res)=>{
                     userQueries.updateLanguage({_id:req.params.id},Name,status);
                 })})
             
-            const a={'data':1,'success':true,'message':'Language  Data Successful Update'};
+            const a={'Data':1,'Success':true,'Message':'Language  Data Successful Update'};
             res.send(a);
             console.log("Update Sussesful without file");
             
@@ -157,7 +157,7 @@ router.post('/updateLanguage/:id',(req,res)=>{
     }
         catch(err){
              console.log("Error in update",err);
-            const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+            const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
             res.send(a);
         }
     //
@@ -165,13 +165,13 @@ router.post('/updateLanguage/:id',(req,res)=>{
         //console.log(email_id);
        // userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
       /* userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
-        const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Update'}];
         res.send(a);
         console.log("Update Sussesful");
     }
     catch(err){
         console.log("Error in update",err);
-        const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+        const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
         res.send(a);
     }*/
   

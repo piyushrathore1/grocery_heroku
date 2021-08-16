@@ -5,11 +5,12 @@ const categorySchema = new mongoose.Schema({
         type : String,
         //required : true,
     },
-    Image:{
+    Image1:{
         type : String,
     },
     LanguageId:{
-        type : String,
+        type : mongoose.Schema.Types.ObjectId,
+        ref:'language'
     },
     Description:{
         type:String,
@@ -21,6 +22,9 @@ const categorySchema = new mongoose.Schema({
         type:String
     },
     status:{
+        type:String,
+    },
+    cloudinary_id:{
         type:String,
     }
 

@@ -31,7 +31,7 @@ router.post('/getAllRole',(req,res)=>{
             res.send(Data);
         })
        /* userQueries.displayAdmin();
-        const a=[{'data':1,'success':true,'message':'Data Successful Delete'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Delete'}];
         res.send(a);
         console.log("Delete Sussesful");*/
     }
@@ -66,13 +66,13 @@ router.post("/deleteRole/:id",(req,res)=>{
     try{
         //console.log(req.params._id);
         userQueries.deleteRole({_id:req.params.id});
-        const a={'data':1,'success':true,'message':'Role Data Successful Delete'};
+        const a={'Data':1,'Success':true,'Message':'Role Data Successful Delete'};
         res.send(a);
         console.log("Admin Delete Sussesful");
     }
     catch(err){
         console.log("Error indelete",err);
-        const a=[{'data':0,'success':false,'message':'Role Data Not Delete'}];
+        const a=[{'Data':0,'Success':false,'Message':'Role Data Not Delete'}];
         res.send(a);
     }
   
@@ -111,14 +111,14 @@ router.post('/updateRole/:id',(req,res)=>{
                     userQueries.updateAdmin({_id:req.params.id},DesignationName,status);
                 })})
             
-            const a={'data':1,'success':true,'message':'Role  Data Successful Update'};
+            const a={'Data':1,'Success':true,'Message':'Role  Data Successful Update'};
             res.send(a);
             console.log("Update Sussesful without file");
             
         }
         catch(err){
              console.log("Error in update",err);
-            const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+            const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
             res.send(a);
         }
     //
@@ -126,13 +126,13 @@ router.post('/updateRole/:id',(req,res)=>{
         //console.log(email_id);
        // userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
       /* userQueries.updateAdmin({_id:req.params.id},email_id,password,status);
-        const a=[{'data':1,'success':true,'message':'Data Successful Update'}];
+        const a=[{'Data':1,'Success':true,'Message':'Data Successful Update'}];
         res.send(a);
         console.log("Update Sussesful");
     }
     catch(err){
         console.log("Error in update",err);
-        const a=[{'data':0,'success':false,'message':'Data Not Update'}];
+        const a=[{'Data':0,'Success':false,'Message':'Data Not Update'}];
         res.send(a);
     }*/
   

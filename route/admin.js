@@ -48,6 +48,7 @@ router.post('/getAllAdmin',(req,res)=>{
     var Email_id=req.body.Email_id;
     var Password=req.body.Password;
     var status=req.body.status;
+    console.log(req.body.upl)
     //Single FIle Uploaded upload.single('upload_documents')
     if(req.file){
         var upload_documents=req.file.path

@@ -1,9 +1,10 @@
 const express = require("express");
+const cors = require('cors'); 
 const conn = require("./config/db_config");
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 
-const app = express();
+const app = express();app.use(cors());
 app.use(bodyparser.json());
 
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -29,6 +30,9 @@ app.use('/language/',language);
 
 const hsn = require("./route/hsn");
 app.use('/hsn/',hsn);
+
+const category = require('./route/category');
+app.use('/category',category)
 
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));

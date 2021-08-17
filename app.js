@@ -37,6 +37,9 @@ app.use('/category',category)
 const subcategory = require('./route/subcategory');
 app.use('/subcategory',subcategory)
 
+const brand = require('./route/brand');
+app.use('/brand',brand)
+
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));
 

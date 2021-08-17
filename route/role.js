@@ -28,7 +28,7 @@ router.post('/getAllRole',(req,res)=>{
                 Data.push(day);
             })
             //a.push("Data":1,"success:true","message:display Successfully");
-            Data={'Data':Data,'Success':true,'Message':'Designation Data Successful'};
+            Data={'Data':Data,'Success':true,'Message':'Designation Data Found Successful'};
             res.send(Data);
         })
        /* userQueries.displayAdmin();

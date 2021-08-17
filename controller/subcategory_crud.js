@@ -4,7 +4,7 @@ const subcategory_schema = require("../schema/subcategory_schema");
 
 
 const userQueries ={
-    insertCategory:(SubcategoryName,SubcategoryImage,LanguageId,SubcategoryDescription,CategoryId,Subcategorystatus,Subcategorycloudinary_id) => {
+    insertSubCategory:(SubcategoryName,SubcategoryImage,LanguageId,SubcategoryDescription,CategoryId,Subcategorystatus,Subcategorycloudinary_id) => {
         let userObj= {
             //_id:_id,
             SubcategoryName:SubcategoryName,
@@ -25,19 +25,19 @@ const userQueries ={
       
     },
 
-    displayCategory:async(req,res)=>{
+     displaysubcategory:async(req,res)=>{
         try{
-            const alldata = await subcategory_schema.find().populate('LanguageId','CategoryId');
+            const alldata = await subcategory_schema.find({Subcategorystatus:0}).populate('LanguageId').populate('CategoryId');
             //res.send(alldata);
             return res.status(200).json({
                 Data : alldata,
-                sucess :'true',
-                Message:'subcategory Data Found Sucessfully'
+                Success :'true',
+                Message:'subcategory Data Found Successfully'
             })
         }catch(e){ res.send(e)}
     },
 
-    displaycategorybyid:async(req,res)=>{
+    displaysubcategorybyid:async(req,res)=>{
         try{
             const _id = req.params.id;
             const alldata = await subcategory_schema.findById(_id,(error, data) => {
@@ -50,14 +50,14 @@ const userQueries ={
            // res.send(alldata);
             return res.status(200).json({
                 Data: alldata,
-                sucess :'true',
-                Message:'subcategory Data Found By ID Sucessfully'
+                Success :'true',
+                Message:'subcategory Data Found By ID Successfully'
             })  
     
     
         }catch(e){ res.send(e)}
     },
-    deleteCategory:(id)=>{
+    deletesubcategory:(id)=>{
         //console.log("samu=",{_id:id});
         subcategory_schema.updateOne({_id:id},
             {
@@ -70,24 +70,24 @@ const userQueries ={
             }).catch((err)=>{console.warn(err)})
         
     },
-    updateCategory:(id,Name,upload_documents,LanguageId,Description,Metatitle,MetaDescription,status,cloudinary_id)=>{
+    updatesubcategory:(id,SubcategoryName,SubcategoryImage,LanguageId,SubcategoryDescription,CategoryId,Subcategorystatus,Subcategorycloudinary_id)=>{
         //console.log(email_id);
         console.log("come to update ");
         subcategory_schema.updateOne({_id:id},
             {$set:{
                // a,b,c
-               SubcategoryName:Name,
-               SubcategoryImage:Image1,
-               LanguageId:LanguageId,
-               SubcategoryDescription:Description,
-               CategoryId:CategoryId,
-               Subcategorystatus:status,
-               Subcategorycloudinary_id:cloudinary_id,              
+            SubcategoryName:SubcategoryName,
+            SubcategoryImage:SubcategoryImage,
+            LanguageId:LanguageId,
+            SubcategoryDescription:SubcategoryDescription,
+            CategoryId:CategoryId,
+            Subcategorystatus:Subcategorystatus,
+            Subcategorycloudinary_id:Subcategorycloudinary_id,           
                 } 
             }).then((result)=>{
                 
             }).catch((err)=>{console.warn(err)})
-    },
+    }, 
     
 }
 module.exports = userQueries;

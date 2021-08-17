@@ -16,7 +16,7 @@ const categorySchema = new mongoose.Schema({
         type:String,
     },
     CategoryId:{
-        type:mongoose.SchemaType.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'category'
     },
     Subcategorystatus:{

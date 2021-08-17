@@ -5,8 +5,8 @@ const userQueries ={
     insertRole:(DesignationName,status) => {
         let userObj= {
             //_id:_id,
-            RoleDesignationName:DesignationName,
-            Rolestatus:status,
+            DesignationName:DesignationName,
+            Designationstatus:status,
         }
    
        if(insertmodel.create(userObj)){
@@ -40,7 +40,7 @@ const userQueries ={
             {$set:{
                // a,b,c
                DesignationName : DesignationName,
-                status   : status,
+               Designationstatus   : status,
                 } 
             }).then((result)=>{
                 

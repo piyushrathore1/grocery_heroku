@@ -4,16 +4,16 @@ const subcategory_schema = require("../schema/subcategory_schema");
 
 
 const userQueries ={
-    insertCategory:(Name,Image1,LanguageId,Description,status,cloudinary_id) => {
+    insertCategory:(SubcategoryName,SubcategoryImage,LanguageId,SubcategoryDescription,CategoryId,Subcategorystatus,Subcategorycloudinary_id) => {
         let userObj= {
             //_id:_id,
-            SubcategoryName:Name,
-            SubcategoryImage:Image1,
+            SubcategoryName:SubcategoryName,
+            SubcategoryImage:SubcategoryImage,
             LanguageId:LanguageId,
-            SubcategoryDescription:Description,
+            SubcategoryDescription:SubcategoryDescription,
             CategoryId:CategoryId,
-            Subcategorystatus:status,
-            Subcategorycloudinary_id:cloudinary_id,
+            Subcategorystatus:Subcategorystatus,
+            Subcategorycloudinary_id:Subcategorycloudinary_id,
         }
    
        if(subcategory_schema.create(userObj)){
@@ -27,12 +27,12 @@ const userQueries ={
 
     displayCategory:async(req,res)=>{
         try{
-            const alldata = await subcategory_schema.find().populate('LanguageId');
+            const alldata = await subcategory_schema.find().populate('LanguageId','CategoryId');
             //res.send(alldata);
             return res.status(200).json({
                 Data : alldata,
                 sucess :'true',
-                Message:'Category Data Found Sucessfully'
+                Message:'subcategory Data Found Sucessfully'
             })
         }catch(e){ res.send(e)}
     },
@@ -51,7 +51,7 @@ const userQueries ={
             return res.status(200).json({
                 Data: alldata,
                 sucess :'true',
-                Message:'Category Data Found By ID Sucessfully'
+                Message:'subcategory Data Found By ID Sucessfully'
             })  
     
     
@@ -62,7 +62,7 @@ const userQueries ={
         subcategory_schema.updateOne({_id:id},
             {
                 $set:{
-                    Categorystatus   : 1,
+                    Subcategorystatus   : 1,
                 }
             }
             ).then((result)=>{
@@ -76,14 +76,13 @@ const userQueries ={
         subcategory_schema.updateOne({_id:id},
             {$set:{
                // a,b,c
-               CategoryName:Name,
-               CategoryImage:upload_documents,
+               SubcategoryName:Name,
+               SubcategoryImage:Image1,
                LanguageId:LanguageId,
-               CategoryDescription:Description,
-               CategoryMetatitle:Metatitle,
-               CategoryMetaDescription:MetaDescription,
-               Categorystatus:status,
-               Categorycloudinary_id:cloudinary_id,
+               SubcategoryDescription:Description,
+               CategoryId:CategoryId,
+               Subcategorystatus:status,
+               Subcategorycloudinary_id:cloudinary_id,              
                 } 
             }).then((result)=>{
                 

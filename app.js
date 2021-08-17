@@ -23,7 +23,7 @@ const vendor = require("./route/vendor");
 app.use('/vendor/',vendor);
 
 const role = require("./route/role");
-app.use('/role/',role);
+app.use('/role/',role);  //for designation 
 
 const language = require("./route/language");
 app.use('/language/',language);
@@ -34,8 +34,8 @@ app.use('/hsn/',hsn);
 const category = require('./route/category');
 app.use('/category',category)
 
-/* const subcategory = require('./route/subcategory');
-app.use('/subcategory',subcategory) */
+const subcategory = require('./route/subcategory');
+app.use('/subcategory',subcategory)
 
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));

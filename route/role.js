@@ -18,7 +18,7 @@ router.post('/getAllRole',(req,res)=>{
     var a=[];
     var Data=[];
     try{
-        var query = { Rolestatus: 0 };
+        var query = { Designationstatus: 0 };
         admin_schema.find(query,(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
             console.log(admin);
@@ -28,7 +28,7 @@ router.post('/getAllRole',(req,res)=>{
                 Data.push(day);
             })
             //a.push("Data":1,"success:true","message:display Successfully");
-            Data={'Data':Data,'Success':true,'Message':'Vendor Data Successful'};
+            Data={'Data':Data,'Success':true,'Message':'Designation Data Successful'};
             res.send(Data);
         })
        /* userQueries.displayAdmin();
@@ -53,7 +53,7 @@ router.post('/getAllRole',(req,res)=>{
        
         userQueries.insertRole(DesignationName,status);
 
-        const a={'Data':1,'Success':true,'Message':'Role Data Successful Insert'};
+        const a={'Data':1,'Success':true,'Message':'Designation Data Successful Insert'};
         res.send(a);
         console.log("Data Insert Sussesful");
     }

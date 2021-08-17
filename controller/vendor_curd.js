@@ -29,7 +29,7 @@ const userQueries ={
         insertmodel.updateOne({_id:id},
             {
                 $set:{
-                    status   : 1,
+                    Vendorstatus   : 1,
                 }
             }
             ).then((result)=>{

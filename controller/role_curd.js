@@ -24,7 +24,7 @@ const userQueries ={
         insertmodel.updateOne({_id:id},
             {
                 $set:{
-                    status   : 1,
+                    Rolestatus   : 1,
                 }
             }
             ).then((result)=>{

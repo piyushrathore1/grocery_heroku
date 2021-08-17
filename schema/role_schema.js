@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const roleBody = new mongoose.Schema({
-    DesignationName:{
+    RoleDesignationName:{
         type : String,
         required : true,
     },
-    status:Number
+    Rolestatus:Number
     
 });
 

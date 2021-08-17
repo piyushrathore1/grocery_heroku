@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const languageBody = new mongoose.Schema({
-    Name:{
+    LanguageName:{
         type : String,
         required : true,
     },
-    status:Number
+    Languagestatus:Number
 });
 
 module.exports=mongoose.model("language",languageBody);

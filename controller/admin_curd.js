@@ -5,13 +5,13 @@ const userQueries ={
     insertAdmin:(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id) => {
         let userObj= {
             //_id:_id,
-            Name:Name,
-            MobileNo:MobileNo,
-            Email_id:Email_id,
-            Password:Password,
-            status:status,
-            upload_Photo:upload_documents,
-            cloudinary_id:cloudinary_id,
+            AdminName:Name,
+            AdminMobileNo:MobileNo,
+            AdminEmail_id:Email_id,
+            AdminPassword:Password,
+            Adminstatus:status,
+            Adminupload_Photo:upload_documents,
+            Admincloudinary_id:cloudinary_id,
         }
    
        if(insertmodel.create(userObj)){

@@ -5,13 +5,13 @@ const userQueries ={
     insertVendor:(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id) => {
         let userObj= {
             //_id:_id,
-            Name:Name,
-            MobileNo:MobileNo,
-            Email_id:Email_id,
-            Password:Password,
-            status:status,
-            upload_documents:upload_documents,
-            cloudinary_id:cloudinary_id,
+            VendorName:Name,
+            VendorMobileNo:MobileNo,
+            VendorEmail_id:Email_id,
+            VendorPassword:Password,
+            Vendorstatus:status,
+            Vendorupload_documents:upload_documents,
+            Vendorcloudinary_id:cloudinary_id,
         }
    
        if(insertmodel.create(userObj)){

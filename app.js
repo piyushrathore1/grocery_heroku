@@ -34,6 +34,9 @@ app.use('/hsn/',hsn);
 const category = require('./route/category');
 app.use('/category',category)
 
+/* const subcategory = require('./route/subcategory');
+app.use('/subcategory',subcategory) */
+
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));
 

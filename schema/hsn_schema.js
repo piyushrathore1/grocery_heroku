@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
 const hsnBody = new mongoose.Schema({
-    Code:{
+    HsnCode:{
         type : String,
         required : true,
     },
-    Tax:{
+    HsnTax:{
         type : String,
         required : true,
     },
-    status:Number
+    Hsnstatus:Number
     
 });
 

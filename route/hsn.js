@@ -18,7 +18,8 @@ router.post('/getAllHsn',(req,res)=>{
     var a=[];
     var Data=[];
     try{
-        admin_schema.find({},(err,admin)=>{
+        var query = { Hsnstatus: 0 };
+        admin_schema.find(query,(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
             console.log(admin);
             //res.send(admin);

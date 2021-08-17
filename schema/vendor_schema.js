@@ -1,27 +1,27 @@
 const mongoose = require("mongoose");
 
 const vendorBody = new mongoose.Schema({
-    Name:{
+    VendorName:{
         type : String,
        // required : true,
     },
-    MobileNo:{
+    VendorMobileNo:{
         type : String,
        // required : true,
     },
-    Email_id:{
+    VendorEmail_id:{
         type : String,
        // required : true,
     },
-    Password:{
+    VendorPassword:{
         type : String,
        // required : true,
     },
-    status:Number,
-    upload_documents:{
+    Vendorstatus:Number,
+    Vendorupload_documents:{
         type:String
     },
-    cloudinary_id:{
+    Vendorcloudinary_id:{
         type:String,
     },
 });

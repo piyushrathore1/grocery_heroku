@@ -18,7 +18,8 @@ router.post('/getAllAdmin',(req,res)=>{
     var a=[];
     var Data=[];
     try{
-        admin_schema.find({},(err,admin)=>{
+        var query = { Adminstatus: 0 };
+        admin_schema.find(query,(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
             console.log(admin);
             //res.send(admin);
@@ -48,7 +49,7 @@ router.post('/getAllAdmin',(req,res)=>{
     var Email_id=req.body.Email_id;
     var Password=req.body.Password;
     var status=req.body.status;
-    console.log(req.body.upl)
+    console.log(req.body)
     //Single FIle Uploaded upload.single('upload_documents')
     if(req.file){
         var upload_documents=req.file.path

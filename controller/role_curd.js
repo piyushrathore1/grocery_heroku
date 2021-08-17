@@ -5,8 +5,8 @@ const userQueries ={
     insertRole:(DesignationName,status) => {
         let userObj= {
             //_id:_id,
-            DesignationName:DesignationName,
-            status:status,
+            RoleDesignationName:DesignationName,
+            Rolestatus:status,
         }
    
        if(insertmodel.create(userObj)){

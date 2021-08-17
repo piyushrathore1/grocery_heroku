@@ -1,27 +1,27 @@
 const mongoose = require("mongoose");
 
 const adminBody = new mongoose.Schema({
-    Name:{
+    AdminName:{
         type : String,
         //required : true,
     },
-    MobileNo:{
+    AdminMobileNo:{
         type : String,
        // required : true,
     },
-    Email_id:{
+    AdminEmail_id:{
         type : String,
         //required : true,
     },
-    Password:{
+    AdminPassword:{
         type : String,
        // required : true,
     },
-    status:Number,
-    upload_Photo:{
+    Adminstatus:Number,
+    Adminupload_Photo:{
         type:String
     },
-    cloudinary_id:{
+    Admincloudinary_id:{
         type:String,
     },
 });

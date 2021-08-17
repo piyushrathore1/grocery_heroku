@@ -5,9 +5,9 @@ const userQueries ={
     insertHsn:(Code,Tax,status) => {
         let userObj= {
             //_id:_id,
-            Code:Code,
-            Tax:Tax,
-            status:status,
+            HsnCode:Code,
+            HsnTax:Tax,
+            Hsnstatus:status,
         }
    
        if(insertmodel.create(userObj)){

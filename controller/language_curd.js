@@ -5,8 +5,8 @@ const userQueries ={
     insertLanguage:(Name,status) => {
         let userObj= {
             //_id:_id,
-            Name:Name,
-            status:status,
+            LanguageName:Name,
+            Languagestatus:status,
         }
    
        if(insertmodel.create(userObj)){

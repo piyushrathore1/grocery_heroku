@@ -1,37 +1,32 @@
 const mongoose = require("mongoose");
 /* const validator = require("validator"); */
 const categorySchema = new mongoose.Schema({
-    CategoryName:{
+    SubcategoryName:{
         type : String,
         //required : true,
     },
-    CategoryImage:{
+    SubcategoryImage:{
         type : String,
     },
     LanguageId:{
         type : mongoose.Schema.Types.ObjectId,
         ref:'language'
     },
-    CategoryDescription:{
+    SubcategoryDescription:{
         type:String,
     },
-    CategoryMetatitle:{
+    CategoryId:{
+        type:mongoose.SchemaType.Types.ObjectId,
+        ref:'category'
+    },
+    Subcategorystatus:{
         type:String,
     },
-    CategoryMetaDescription:{
-        type:String
-    },
-    Categorystatus:{
-        type:String,
-    },
-    Categorycloudinary_id:{
+    Subcategorycloudinary_id:{
         type:String,
     }
-
-    
-    
 });  
 
-module.exports=mongoose.model('category',categorySchema);
+module.exports=mongoose.model('subcategory',categorySchema);
 //const result = mongoose.model('admin',adminBody);
 //module.exports= result;

@@ -30,7 +30,7 @@ const userQueries ={
             //res.send(alldata);
             return res.status(200).json({
                 Data : alldata,
-                Success :'true',
+                Success :true,
                 Message:'brand Data Found Successfully'
             })
         }catch(e){ res.send(e)}
@@ -49,7 +49,7 @@ const userQueries ={
            // res.send(alldata);
             return res.status(200).json({
                 Data: alldata,
-                Success :'true',
+                Success :true,
                 Message:'brand Data Found By ID Successfully'
             })  
     

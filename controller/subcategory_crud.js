@@ -31,7 +31,7 @@ const userQueries ={
             //res.send(alldata);
             return res.status(200).json({
                 Data : alldata,
-                Success :'true',
+                Success :true,
                 Message:'subcategory Data Found Successfully'
             })
         }catch(e){ res.send(e)}
@@ -50,7 +50,7 @@ const userQueries ={
            // res.send(alldata);
             return res.status(200).json({
                 Data: alldata,
-                Success :'true',
+                Success :true,
                 Message:'subcategory Data Found By ID Successfully'
             })  
     

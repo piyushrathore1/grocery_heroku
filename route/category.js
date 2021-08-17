@@ -28,43 +28,41 @@ router.post("/addcategory",upload.single('Image1'),async(req,res)=>{
    // userQueries.insertCategory(req,res);
 
 
+   var Name=req.body.Name;
+  // var Image1=req.body.Image1;
+   //var LanguageId=req.body.LanguageId;
+   var Description=req.body.Description;
+   var Metatitle=req.body.Metatitle;
+   var MetaDescription =req.body.MetaDescription;
+   var status = req.body.status;
+   //var cloudinary_id = req.body.cloudinary_id;
 
-  /*  var Name=req.body.Name;
-    var MobileNo=req.body.MobileNo;
-    var Email_id=req.body.Email_id;
-    var Password=req.body.Password;
-    var status=req.body.status; */
-    //Single FIle Uploaded upload.single('upload_documents')
-    if(req.file){
-        var upload_documents=req.file.path
-    }else{
-        console.log("file path is not set");
-    }
-    //Multipal File Uploaded
-   /* if(req.files){
-        let path=''
-        req.files.forEach((files,index,arr)=>{
-            path = path + files.path + ','
-        })
-        path = path.substring(0,path.lastIndexOf(","))
-        var upload_documents=path
-    }*/
-    try{
-        //console.log(req.file.path);
-        // image upload on cloud
-        const result = await cloudinary.uploader.upload(req.file.path);
-        //console.log(result);
-        var upload_documents=result.secure_url;
-        var cloudinary_id=result.public_id;
-        userQueries.insertCategory(req,res,upload_documents,cloudinary_id);
-       // res.send("Record inserted");
-        const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};
-        res.send(a);
-        console.log("Data Insert Sussesful");
-    }
-    catch(e){
-        console.log("Error in insert",e);
-    }
+   console.log(req.body.upl)
+   //Single FIle Uploaded upload.single('upload_documents')
+   if(req.file){
+       var upload_documents=req.file.path
+   }else{
+       console.log("file path is not set");
+   }
+   try{
+       //console.log(req.file.path);
+       // image upload on cloud
+       const result = await cloudinary.uploader.upload(req.file.path);
+       //console.log(result);
+       var Image1=result.secure_url;
+       var cloudinary_id=result.public_id;
+       userQueries.insertCategory(Name,Image1,Description,Metatitle,MetaDescription,status,cloudinary_id);
+      // res.send("Record inserted");
+       const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};
+       res.send(a);
+       console.log("Data Insert Sussesful");
+   }
+   catch(e){
+       console.log("Error in insert",e);
+   }
+
+
+    
 
 })
 

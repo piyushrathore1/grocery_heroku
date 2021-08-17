@@ -24,19 +24,26 @@ const userQueries ={
        }
       
     }, */
-    insertCategory:(req,res,upload_documents,cloudinary_id)=>{
-        
-        const categorydata = new category_schema(req.body,upload_documents,cloudinary_id);
-        categorydata.save().then(() =>{
-        //res.send(vendordata);
-        return res.status(200).json({
-            Data: categorydata,
-            msg:'Category Insert Sucessfully',
-            sucess :'true',
-        })
-    }).catch((e)=>{
-        res.send(e);
-    })
+    insertCategory:(Name,Image1,Description,Metatitle,MetaDescription,status,cloudinary_id) => {
+        let userObj= {
+            //_id:_id,
+            Name:Name,
+            Image1:Image1,
+            //LanguageId:LanguageId,
+            Description:Description,
+            Metatitle:Metatitle,
+            MetaDescription:MetaDescription,
+            status:status,
+            cloudinary_id:cloudinary_id,
+        }
+   
+       if(category_schema.create(userObj)){
+           console.log("category Add Successful");
+       } 
+       else{
+        console.warn("record not inserted");
+       }
+      
     },
 
     displayCategory:async(req,res)=>{

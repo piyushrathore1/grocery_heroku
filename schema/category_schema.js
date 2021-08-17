@@ -8,10 +8,10 @@ const categorySchema = new mongoose.Schema({
     Image1:{
         type : String,
     },
-    LanguageId:{
+    /* LanguageId:{
         type : mongoose.Schema.Types.ObjectId,
         ref:'language'
-    },
+    }, */
     Description:{
         type:String,
     },

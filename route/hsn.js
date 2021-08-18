@@ -42,6 +42,12 @@ router.post('/getAllHsn',(req,res)=>{
 
 });
 
+
+router.post("/gethsnbyid/:id",(req,res)=>{
+    userQueries.displayHsnbyid(req,res);
+})
+
+
 //router.post("/addAdmin",upload.array('upload_documents[]'),async(req,res)=>{
  router.post("/addHsn",(req,res)=>{
     //console.log(req.body);

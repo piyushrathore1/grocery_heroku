@@ -42,6 +42,10 @@ router.post('/getAllLanguage',(req,res)=>{
 
 });
 
+router.post("/getlanguagebyid/:id",(req,res)=>{
+    userQueries.displaylanguagebyid(req,res);
+})
+
 //router.post("/addAdmin",upload.array('upload_documents[]'),async(req,res)=>{
  router.post("/addLanguage",(req,res)=>{
     var Name=req.body.Name;

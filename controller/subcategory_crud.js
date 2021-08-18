@@ -42,7 +42,11 @@ const userQueries ={
             const _id = req.params.id;
             const alldata = await subcategory_schema.findById(_id,(error, data) => {
                 if (error) {
-                  return next(error)
+                 return res.status(400).json({
+                    Data: [],
+                    Success :true,
+                    Message:'Banner Id not found'
+                })
                 } else {
                   //res.json(data)
                 }

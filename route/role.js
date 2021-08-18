@@ -42,6 +42,11 @@ router.post('/getAllRole',(req,res)=>{
 
 });
 
+router.post("/getrolebyid/:id",(req,res)=>{
+    userQueries.displayrolebyid(req,res);
+})
+
+
 //router.post("/addAdmin",upload.array('upload_documents[]'),async(req,res)=>{
  router.post("/addRole",(req,res)=>{
     //console.log(req.body);

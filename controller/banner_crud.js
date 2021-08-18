@@ -27,7 +27,7 @@ const userQueries ={
 
      displaybanner:async(req,res)=>{
         try{
-            const alldata = await banner_schema.find({Bannerstatus:0}).populate('LanguageId');
+            const alldata = await banner_schema.find({BannerStatus:0}).populate('LanguageId');
             //res.send(alldata);
             return res.status(200).json({
                 Data : alldata,
@@ -42,14 +42,18 @@ const userQueries ={
             const _id = req.params.id;
             const alldata = await banner_schema.findById(_id,(error, data) => {
                 if (error) {
-                  return next(error)
+                    return res.status(400).json({
+                        Data: [],
+                        Success :true,
+                        Message:'Banner Id not found'
+                    })
                 } else {
                   //res.json(data)
                 }
               });
            // res.send(alldata);
             return res.status(200).json({
-                Data: alldata,
+                Data: [alldata],
                 Success :true,
                 Message:'Banner Data Found By ID Successfully'
             })  
@@ -62,7 +66,7 @@ const userQueries ={
         banner_schema.updateOne({_id:id},
             {
                 $set:{
-                    Bannerstatus   : 1,
+                    BannerStatus   : 1,
                 }
             }
             ).then((result)=>{
@@ -70,19 +74,19 @@ const userQueries ={
             }).catch((err)=>{console.warn(err)})
         
     },
-    updatebanner:(id,BannerName,BannerImage,LanguageId,BannerDescription,CategoryId,Bannerstatus,Bannercloudinary_id)=>{
+    updatebanner:(id,BannerName,BannerImage,LanguageId,BannerType,BannerPosition,BannerStatus,BannerCloudinary_id)=>{
         //console.log(email_id);
         console.log("come to update ");
         banner_schema.updateOne({_id:id},
             {$set:{
                // a,b,c
-            BannerName:BannerName,
-            BannerImage:BannerImage,
-            LanguageId:LanguageId,
-            BannerDescription:BannerDescription,
-            CategoryId:CategoryId,
-            Bannerstatus:Bannerstatus,
-            Bannercloudinary_id:Bannercloudinary_id,           
+               BannerName:BannerName,
+               BannerImage:BannerImage,
+               LanguageId:LanguageId,
+               BannerType:BannerType,
+               BannerPosition:BannerPosition,
+               BannerStatus:BannerStatus,
+               BannerCloudinary_id:BannerCloudinary_id,        
                 } 
             }).then((result)=>{
                 

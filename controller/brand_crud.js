@@ -41,7 +41,11 @@ const userQueries ={
             const _id = req.params.id;
             const alldata = await brand_schema.findById(_id,(error, data) => {
                 if (error) {
-                  return next(error)
+                 return res.status(400).json({
+                    Data: [],
+                    Success :true,
+                    Message:'brand Id not found'
+                })
                 } else {
                   //res.json(data)
                 }

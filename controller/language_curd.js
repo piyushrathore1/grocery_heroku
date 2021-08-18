@@ -53,6 +53,30 @@ const userQueries ={
             console.log(admin);
         })
         
+    },
+    displaylanguagebyid:async(req,res)=>{
+        try{
+            const _id = req.params.id;
+            const alldata = await insertmodel.findById(_id,(error, data) => {
+                if (error) {
+                 return res.status(400).json({
+                    Data: [],
+                    Success :true,
+                    Message:'Language Id not found'
+                })
+                } else {
+                  //res.json(data)
+                }
+              });
+           // res.send(alldata);
+            return res.status(200).json({
+                Data: [alldata],
+                Success :true,
+                Message:'Language Data Found By ID Successfully'
+            })  
+    
+    
+        }catch(e){ res.send(e)}
     }
     
 }

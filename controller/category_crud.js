@@ -71,7 +71,7 @@ const userQueries ={
               });
            // res.send(alldata);
             return res.status(200).json({
-                Data: alldata,
+                Data: [alldata],
                 Success :true,
                 Message:'Category Data Found By ID Successfully'
             })  

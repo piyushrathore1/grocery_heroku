@@ -18,10 +18,10 @@ const bannerBody = new mongoose.Schema({
     BannerPosition:{
         type:String
     },
-    OfferStatus:{
+    BannerStatus:{
         type:String
     },
-    OfferCloudinary_id:{
+    BannerCloudinary_id:{
         type:String,
     }
 });

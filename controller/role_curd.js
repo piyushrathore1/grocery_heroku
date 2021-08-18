@@ -39,8 +39,8 @@ const userQueries ={
         insertmodel.updateOne({_id:id},
             {$set:{
                // a,b,c
-               DesignationName : DesignationName,
-               Designationstatus   : status,
+               DesignationName:DesignationName,
+               Designationstatus:status,
                 } 
             }).then((result)=>{
                 

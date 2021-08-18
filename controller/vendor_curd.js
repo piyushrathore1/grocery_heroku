@@ -44,13 +44,13 @@ const userQueries ={
         insertmodel.updateOne({_id:id},
             {$set:{
                // a,b,c
-                Name : Name,
-                MobileNo : MobileNo,
-                Email_id : Email_id,
-                Password : Password,
-                status   : status,
-                upload_documents : upload_documents,
-                cloudinary_id    : cloudinary_id,
+               VendorName:Name,
+               VendorMobileNo:MobileNo,
+               VendorEmail_id:Email_id,
+               VendorPassword:Password,
+               Vendorstatus:status,
+               Vendorupload_documents:upload_documents,
+               Vendorcloudinary_id:cloudinary_id,
                 } 
             }).then((result)=>{
                 

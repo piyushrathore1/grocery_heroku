@@ -4,7 +4,7 @@ const banner_schema = require("../schema/banner_schema");
 
 
 const userQueries ={
-    insertbanner:(BannerName,BannerImage,LanguageId,BannerType,BannerPosition,Bannerstatus,Bannercloudinary_id) => {
+    insertbanner:(BannerName,BannerImage,LanguageId,BannerType,BannerPosition,BannerStatus,BannerCloudinary_id) => {
         let userObj= {
             //_id:_id,
             BannerName:BannerName,
@@ -12,8 +12,8 @@ const userQueries ={
             LanguageId:LanguageId,
             BannerType:BannerType,
             BannerPosition:BannerPosition,
-            Bannerstatus:Bannerstatus,
-            Bannercloudinary_id:Bannercloudinary_id,
+            BannerStatus:BannerStatus,
+            BannerCloudinary_id:BannerCloudinary_id,
         }
    
        if(banner_schema.create(userObj)){

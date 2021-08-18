@@ -22,7 +22,7 @@ router.post("/addbanner",upload.single('BannerImage'),async(req,res)=>{
    var LanguageId=req.body.LanguageId;
    var BannerType=req.body.BannerType;
    var BannerPosition = req.body.BannerPosition;
-   var Bannerstatus = req.body.Bannerstatus;
+   var BannerStatus = req.body.BannerStatus;
    //var cloudinary_id = req.body.cloudinary_id;
 
    console.log(req.body)
@@ -38,8 +38,8 @@ router.post("/addbanner",upload.single('BannerImage'),async(req,res)=>{
        const result = await cloudinary.uploader.upload(req.file.path);
        //console.log(result);
        var BannerImage=result.secure_url;
-       var Bannercloudinary_id=result.public_id;
-        userQueries.insertbanner(BannerName,BannerImage,LanguageId,BannerType,BannerPosition,Bannerstatus,Bannercloudinary_id);
+       var BannerCloudinary_id=result.public_id;
+        userQueries.insertbanner(BannerName,BannerImage,LanguageId,BannerType,BannerPosition,BannerStatus,BannerCloudinary_id);
       // res.send("Record inserted");
        const a={'Data':1,'Success':true,'Message':'Banner Data Successful Insert'};
        res.send(a);
@@ -55,18 +55,18 @@ router.post("/addbanner",upload.single('BannerImage'),async(req,res)=>{
 })
 
 router.post("/getBanner",(req,res)=>{
-    userQueries.displayBanner(req,res);
+    userQueries.displaybanner(req,res);
 })
 
 router.post("/getBannerbyid/:id",(req,res)=>{
-    userQueries.displayBannerbyid(req,res);
+    userQueries.displaybannerbyid(req,res);
 })
 
 router.post("/deleteBanner/:id",(req,res)=>{
     var id={_id:req.params._id};
     try{
         //console.log(req.params._id);
-        userQueries.deleteBanner({_id:req.params.id});
+        userQueries.deletebanner({_id:req.params.id});
         const a={'Data':1,'Success':true,'Message':'Banner Data Successful Delete'};
         res.send(a);
         console.log("Banner Delete Sussesfully");
@@ -90,7 +90,7 @@ router.post('/updateBanner/:id',upload.single('BannerImage'),async(req,res)=>{
    var LanguageId=req.body.LanguageId;
    var BannerDescription=req.body.BannerDescription;
    var CategoryId = req.body.CategoryId;
-   var Bannerstatus = req.body.Bannerstatus;
+   var BannerStatus = req.body.BannerStatus;
     //samu change
     if(req.file){
         var BannerImage=req.file.path
@@ -106,7 +106,7 @@ router.post('/updateBanner/:id',upload.single('BannerImage'),async(req,res)=>{
             var Bannercloudinary_id=result.public_id;
            // console.log("s1",upload_documents);
             //console.log("s2",cloudinary_id);
-           userQueries.updateBanner({_id:req.params.id},BannerName,BannerImage,LanguageId,BannerDescription,CategoryId,Bannerstatus,Bannercloudinary_id);
+           userQueries.updatebanner({_id:req.params.id},BannerName,BannerImage,LanguageId,BannerDescription,CategoryId,Bannerstatus,Bannercloudinary_id);
     
               const a={'Data':1,'Success':true,'Message':'Banner Data Successful Update'};
               res.send(a);
@@ -123,7 +123,7 @@ router.post('/updateBanner/:id',upload.single('BannerImage'),async(req,res)=>{
                     Bannercloudinary_id= day.cloudinary_id;
                   //  console.log(upload_documents);
                    // console.log(cloudinary_id);
-                    userQueries.updateBanner({_id:req.params.id},BannerName,BannerImage,LanguageId,BannerDescription,CategoryId,Bannerstatus,Bannercloudinary_id);
+                    userQueries.updatebanner({_id:req.params.id},BannerName,BannerImage,LanguageId,BannerDescription,CategoryId,Bannerstatus,Bannercloudinary_id);
                 })})
             
             const a={'Data':1,'Success':true,'Message':'Banner  Data Successful Update'};

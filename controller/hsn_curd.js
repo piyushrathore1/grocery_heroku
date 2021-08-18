@@ -40,9 +40,9 @@ const userQueries ={
         insertmodel.updateOne({_id:id},
             {$set:{
                // a,b,c
-               Code : Code,
-               Tax:Tax,
-                status   : status,
+               HsnCode:Code,
+            HsnTax:Tax,
+            Hsnstatus:status,
                 } 
             }).then((result)=>{
                 

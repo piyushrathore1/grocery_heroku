@@ -40,6 +40,9 @@ app.use('/subcategory',subcategory)
 const brand = require('./route/brand');
 app.use('/brand',brand)
 
+const offer = require('./route/offer');
+app.use('/offer',offer)
+
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));
 

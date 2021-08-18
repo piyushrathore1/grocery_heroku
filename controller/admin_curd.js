@@ -63,7 +63,27 @@ const userQueries ={
             console.log(admin);
         })
         
-    }
+    },
+    displayadminbyid:async(req,res)=>{
+        try{
+            const _id = req.params.id;
+            const alldata = await insertmodel.findById(_id,(error, data) => {
+                if (error) {
+                  return next(error)
+                } else {
+                  //res.json(data)
+                }
+              });
+           // res.send(alldata);
+            return res.status(200).json({
+                Data: alldata,
+                Success :true,
+                Message:'Admin Data Found By ID Successfully'
+            })  
+    
+    
+        }catch(e){ res.send(e)}
+    },
     
 }
 module.exports = userQueries;

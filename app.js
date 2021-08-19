@@ -49,6 +49,9 @@ app.use('/banner',banner)
 const product = require('./route/product');
 app.use('/product',product)
 
+const productdetail = require('./route/productdetail');
+app.use('/productdetail',productdetail)
+
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));
 

@@ -9,7 +9,7 @@ const ProductdetailSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref:'product'
     },
-    ProductdetailSfMrp:{
+    ProductdetailSFMrp:{
         type:String,
     },
     ProductdetailSFSrp:{

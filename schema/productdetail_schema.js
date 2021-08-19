@@ -28,7 +28,7 @@ const ProductdetailSchema = new mongoose.Schema({
         type:String,
     },
     ProductdetailStatus:{
-        type:String,
+        type:Number,
     },
     
 });  

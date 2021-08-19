@@ -16,7 +16,7 @@ const brandSchema = new mongoose.Schema({
         type:String,
     },
     BrandStatus:{
-        type:String,
+        type:Number,
     },
     BrandCloudinary_id:{
         type:String,

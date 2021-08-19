@@ -19,7 +19,7 @@ const bannerBody = new mongoose.Schema({
         type:String
     },
     BannerStatus:{
-        type:String
+        type:Number
     },
     BannerCloudinary_id:{
         type:String,

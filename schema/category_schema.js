@@ -22,7 +22,7 @@ const categorySchema = new mongoose.Schema({
         type:String
     },
     Categorystatus:{
-        type:String,
+        type:Number,
     },
     Categorycloudinary_id:{
         type:String,

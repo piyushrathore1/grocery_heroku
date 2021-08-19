@@ -13,7 +13,7 @@ const OfferBody = new mongoose.Schema({
         type:String
     },
     OfferStatus:{
-        type:String
+        type:Number
     },
     OfferCloudinary_id:{
         type:String,

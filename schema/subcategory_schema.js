@@ -20,7 +20,7 @@ const categorySchema = new mongoose.Schema({
         ref:'category'
     },
     Subcategorystatus:{
-        type:String,
+        type:Number,
     },
     Subcategorycloudinary_id:{
         type:String,

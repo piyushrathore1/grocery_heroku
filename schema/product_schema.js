@@ -28,7 +28,7 @@ const ProductSchema = new mongoose.Schema({
         ref:'hsn'
     },
     ProductStatus:{
-        type:String,
+        type:Number,
     },
     ProductCloudinary_id:{
         type:String,

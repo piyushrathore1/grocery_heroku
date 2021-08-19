@@ -18,7 +18,7 @@ router.post('/getAllRole',(req,res)=>{
     var a=[];
     var Data=[];
     try{
-        var query = { Designationstatus: 0 };
+        var query = { DesignationStatus: 0 };
         admin_schema.find(query,(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
             console.log(admin);
@@ -51,12 +51,12 @@ router.post("/getrolebyid/:id",(req,res)=>{
  router.post("/addRole",(req,res)=>{
     //console.log(req.body);
     var DesignationName=req.body.DesignationName;
-    var status=req.body.status;
+    var DesignationStatus=req.body.DesignationStatus;
     console.log(DesignationName);
    
     try{
        
-        userQueries.insertRole(DesignationName,status);
+        userQueries.insertRole(DesignationName,DesignationStatus);
 
         const a={'Data':1,'Success':true,'Message':'Designation Data Successful Insert'};
         res.send(a);
@@ -99,7 +99,7 @@ router.post('/updateRole/:id',(req,res)=>{
     //var status={status:req.body.status};
     //console.log(id)
     var DesignationName=req.body.DesignationName;
-    var status=req.body.status;
+    var DesignationStatus=req.body.DesignationStatus;
    
     try{
        
@@ -114,7 +114,7 @@ router.post('/updateRole/:id',(req,res)=>{
                     cloudinary_id= day.cloudinary_id;
                   //  console.log(upload_documents);
                    // console.log(cloudinary_id);
-                    userQueries.updateAdmin({_id:req.params.id},DesignationName,status);
+                    userQueries.updateRole({_id:req.params.id},DesignationName,DesignationStatus);
                 })})
             
             const a={'Data':1,'Success':true,'Message':'Role  Data Successful Update'};

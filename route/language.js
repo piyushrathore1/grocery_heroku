@@ -18,7 +18,7 @@ router.post('/getAllLanguage',(req,res)=>{
     var a=[];
     var Data=[];
     try{
-        var query = { Languagestatus: 0 };
+        var query = { LanguageStatus: 0 };
         admin_schema.find(query,(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
             console.log(admin);

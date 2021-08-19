@@ -5,7 +5,7 @@ const roleBody = new mongoose.Schema({
         type : String,
         required : true,
     },
-    Designationstatus:Number
+    DesignationStatus:Number
     
 });
 

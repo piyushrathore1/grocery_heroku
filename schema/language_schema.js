@@ -5,7 +5,7 @@ const languageBody = new mongoose.Schema({
         type : String,
         required : true,
     },
-    Languagestatus:Number
+    LanguageStatus:Number
 });
 
 module.exports=mongoose.model("language",languageBody);

@@ -2,11 +2,11 @@ const conn = require("../config/db_config");
 const insertmodel = require('../schema/role_schema');
  
 const userQueries ={
-    insertRole:(DesignationName,status) => {
+    insertRole:(DesignationName,DesignationStatus) => {
         let userObj= {
             //_id:_id,
             DesignationName:DesignationName,
-            Designationstatus:status,
+            DesignationStatus:DesignationStatus,
         }
    
        if(insertmodel.create(userObj)){
@@ -24,7 +24,7 @@ const userQueries ={
         insertmodel.updateOne({_id:id},
             {
                 $set:{
-                    Rolestatus   : 1,
+                    DesignationStatus   : 1,
                 }
             }
             ).then((result)=>{
@@ -33,20 +33,20 @@ const userQueries ={
         
     },
 
-    updateAdmin:(id,DesignationName,status)=>{
+    updateRole:(id,DesignationName,DesignationStatus)=>{
         //console.log(email_id);
         console.log("come to update ");
         insertmodel.updateOne({_id:id},
             {$set:{
                // a,b,c
                DesignationName:DesignationName,
-               Designationstatus:status,
+               DesignationStatus:DesignationStatus,
                 } 
             }).then((result)=>{
                 
             }).catch((err)=>{console.warn(err)})
     },
-    displayAdmin:(id)=>{
+    displayRole:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.find({},(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");

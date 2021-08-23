@@ -5,6 +5,9 @@ const ProductdetailSchema = new mongoose.Schema({
         type : String,
         //required : true,
     },
+    ProductdetailImage:{
+        type:String
+    },
     ProductId:{
         type : mongoose.Schema.Types.ObjectId,
         ref:'product'
@@ -30,6 +33,9 @@ const ProductdetailSchema = new mongoose.Schema({
     ProductdetailStatus:{
         type:Number,
     },
+    ProductdetailCloudinary_id:{
+        type:String,
+    }
     
 });  
 

@@ -71,12 +71,12 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     try{
         //console.log(req.file.path);
         // image upload on cloud
-        //const result = await cloudinary.uploader.upload(req.file.path);
+        const result = await cloudinary.uploader.upload(req.file.path);
         //console.log(result);
-        //var upload_documents=result.secure_url;
-      //  var cloudinary_id=result.public_id;
-      var upload_documents = '';
-      var cloudinary_id = '';
+        var upload_documents=result.secure_url;
+        var cloudinary_id=result.public_id;
+      //var upload_documents = '';
+     // var cloudinary_id = '';
         userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
        // res.send("Record inserted");
         const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};

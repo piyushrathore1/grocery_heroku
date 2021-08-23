@@ -3,11 +3,34 @@ const productdetail_schema = require("../schema/productdetail_schema");
 
 
 
+/* exports.addproductdetail = (req, res, next) => {
+    /*  res.status(200).json({
+       success: true,
+       message: "hello language controller",
+     }); 
+ 
+     const productdetail = new productdetail_schema(req.body);
+     console.log(req.body)
+     productdetail.save().then(() =>{
+         //res.send(vendordata);
+         return res.status(200).json({
+             Data: productdetail,
+             msg:'productdetail Insert Sucessfully',
+             sucess :'true',
+         })
+     }).catch((e)=>{
+         res.send(e);
+     })
+ 
+ 
+   }; */
+
 const userQueries ={
-    insertProductdetail:(ProductdetailVariationName,ProductId,ProductdetailSFMrp,ProductdetailSFSrp,ProductdetailScheduleMrp,ProductdetailScheduleSrp,ProductdetailAdditionalDiscountSF,ProductdetailAdditionalDiscountSchedule,ProductdetailStatus) => {
+    insertProductdetail:(res,ProductdetailVariationName,ProductdetailImage,ProductId,ProductdetailSFMrp,ProductdetailSFSrp,ProductdetailScheduleMrp,ProductdetailScheduleSrp,ProductdetailAdditionalDiscountSF,ProductdetailAdditionalDiscountSchedule,ProductdetailStatus,ProductdetailCloudinary_id) => {
         let userObj= {
             //_id:_id,
             ProductdetailVariationName:ProductdetailVariationName,
+            ProductdetailImage:ProductdetailImage,
             ProductId:ProductId,
             ProductdetailSFMrp:ProductdetailSFMrp,
             ProductdetailSFSrp:ProductdetailSFSrp,
@@ -15,22 +38,34 @@ const userQueries ={
             ProductdetailScheduleSrp:ProductdetailScheduleSrp,
             ProductdetailAdditionalDiscountSF:ProductdetailAdditionalDiscountSF,
             ProductdetailAdditionalDiscountSchedule:ProductdetailAdditionalDiscountSchedule,
-            ProductdetailStatus:ProductdetailStatus
+            ProductdetailStatus:ProductdetailStatus,
+            ProductdetailCloudinary_id:ProductdetailCloudinary_id
           
         }
    
        if(productdetail_schema.create(userObj)){
-           console.log("ProductdetailAdd Successful");
+           console.log("ProductdetailAdd Successfully");
+           const a={'Data':1,'Success':true,'Message':'ProductdetailData Successful Insert'};
+            res.send(a);
+            console.log(productdetail_schema.create(userObj))
        } 
+      
        else{
+           res.send("error");
+        /* res.send({
+            Data: 0,
+            msg:'Vendor Insert not Sucessfully',
+            sucess :'true',
+        }) */
         console.warn("record not inserted");
        }
+       console.log(productdetail_schema.create(userObj))
       
     },
 
      displayProductdetail:async(req,res)=>{
         try{
-            const alldata = await productdetail_schema.find({ProductStatus:0}).populate('LanguageId').populate('SubcategoryId').populate('HsnId');
+            const alldata = await productdetail_schema.find({ProductdetailStatus:0}).populate('ProductId');
             //res.send(alldata);
             return res.status(200).json({
                 Data : alldata,
@@ -50,12 +85,6 @@ const userQueries ={
                     Success :true,
                     Message:'ProductdetailId not found'
                 })
-
-                 /*  return res.status(400).json({
-                    Data: [],
-                    Success :true,
-                    Message:'Banner Id not found'
-                }) */
                 } else {
                   //res.json(data)
                 }
@@ -75,7 +104,7 @@ const userQueries ={
         productdetail_schema.updateOne({_id:id},
             {
                 $set:{
-                    ProductStatus   : 1,
+                    ProductdetailStatus   : 1,
                 }
             }
             ).then((result)=>{
@@ -83,13 +112,14 @@ const userQueries ={
             }).catch((err)=>{console.warn(err)})
         
     },
-    updateProductdetail:(id,ProductdetailVariationName,ProductId,ProductdetailSFMrp,ProductdetailSFSrp,ProductdetailScheduleMrp,ProductdetailScheduleSrp,ProductdetailAdditionalDiscountSF,ProductdetailAdditionalDiscountSchedule,ProductdetailStatus)=>{
+    updateProductdetail:(id,ProductdetailVariationName,ProductdetailImage,ProductId,ProductdetailSFMrp,ProductdetailSFSrp,ProductdetailScheduleMrp,ProductdetailScheduleSrp,ProductdetailAdditionalDiscountSF,ProductdetailAdditionalDiscountSchedule,ProductdetailStatus,ProductdetailCloudinary_id)=>{
         //console.log(email_id);
         console.log("come to update ");
         productdetail_schema.updateOne({_id:id},
             {$set:{
                // a,b,c
                ProductdetailVariationName:ProductdetailVariationName,
+               ProductdetailImage:ProductdetailImage,
                ProductId:ProductId,
                ProductdetailSFMrp:ProductdetailSFMrp,
                ProductdetailSFSrp:ProductdetailSFSrp,
@@ -97,7 +127,8 @@ const userQueries ={
                ProductdetailScheduleSrp:ProductdetailScheduleSrp,
                ProductdetailAdditionalDiscountSF:ProductdetailAdditionalDiscountSF,
                ProductdetailAdditionalDiscountSchedule:ProductdetailAdditionalDiscountSchedule,
-               ProductdetailStatus:ProductdetailStatus        
+               ProductdetailStatus:ProductdetailStatus,
+               ProductdetailCloudinary_id:ProductdetailCloudinary_id   
                 } 
             }).then((result)=>{
                 

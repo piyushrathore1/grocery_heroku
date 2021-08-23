@@ -1,4 +1,5 @@
 const conn = require("../config/db_config");
+const language_schema = require("../schema/language_schema");
 const insertmodel = require('../schema/language_schema');
  
 const userQueries ={
@@ -46,13 +47,46 @@ const userQueries ={
                 
             }).catch((err)=>{console.warn(err)})
     },
-    displayLanguage:(id)=>{
+    /* displayLanguage:(id)=>{
         //console.log("samu=",{_id:id});
         insertmodel.find({},(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
             console.log(admin);
         })
         
+    }, */
+    getalllanguagename:async(req,res)=>{
+        var all = [];
+        try{
+            const alldata = await language_schema.find({LanguageStatus:0});
+            for (var key in alldata) {
+               // console.log(alldata[key]["LanguageName"]);
+                var languageall = alldata[key]["LanguageName"];
+                all.push(languageall)
+                
+            }
+            
+            console.log(all)
+            //res.send(alldata);
+            return res.status(200).json({
+                Data : all,
+                Success :true,
+                Message:'Language Name Found Successfully'
+            })
+        }catch(e){ res.send(e)}
+    },
+
+    displayLanguage:async(req,res)=>{
+        try{
+            const alldata = await language_schema.find({LanguageStatus:0});
+            /* const alldata = await language_schema.find({LanguageStatus:0}).select("LanguageName -_id"); */
+            //res.send(alldata);
+            return res.status(200).json({
+                Data : alldata,
+                Success :true,
+                Message:'Language Data Found Successfully'
+            })
+        }catch(e){ res.send(e)}
     },
     displaylanguagebyid:async(req,res)=>{
         try{

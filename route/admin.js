@@ -13,6 +13,67 @@ const cloudinary = require("../controller/cloudinary");
 
 })*/
 
+router.post("/login",(req,res,next)=>{
+    admin_schema.find({AdminEmail_id :req.body.AdminEmail_id})
+    .exec()
+    .then(admin=>{
+    if(admin_schema.length < 1 ){
+        return res.status(401).json({
+            msg :'user not exist'
+        })
+    }
+    else{
+        if(req.body.AdminPassword ==admin[0].AdminPassword ){
+            return res.status(200).json({
+               /*  Data:[{
+                    admin
+                }
+                ], */
+                Data:admin,
+                msg:'login sucessfully',
+                sucess :'true',
+                
+            })
+        }
+        else{
+            return res.status(404).json({
+                msg:'password not match'
+            })
+        }
+    }
+    /* bcrypt.compare(req.body.AdminPassword ,admin[0].AdminPassword,(res,result)=>{
+        if(!result){
+            return res.status(404).json({
+                msg:'password not match'
+            })
+        }
+        if(result){
+            const token = jwt.sign({
+                AdminName :admin[0].AdminName
+            },
+            'this is dummy text',
+            {
+                expiresIn :"24h"
+            }
+            );
+            res.status(200).json({
+                AdminName :admin[0].AdminName,
+                token :token
+            })
+        }
+    }) */
+
+
+    })
+    .catch(error =>{
+        res.status(500).json({
+            msg :"Mail Id and password Incorrect"
+        })
+    })
+
+})
+
+
 router.post('/getAllAdmin',(req,res)=>{
     console.log("Display record:-");
     var a=[];
@@ -72,12 +133,12 @@ router.post("/getadminbyid/:id",(req,res)=>{
     try{
         //console.log(req.file.path);
         // image upload on cloud
-       // const result = await cloudinary.uploader.upload(req.file.path);
+        const result = await cloudinary.uploader.upload(req.file.path);
         //console.log(result);
-       // var upload_documents=result.secure_url;
-       // var cloudinary_id=result.public_id;
-       var upload_documents='';
-        var cloudinary_id='';
+        var upload_documents=result.secure_url;
+        var cloudinary_id=result.public_id;
+       //var upload_documents='';
+        //var cloudinary_id='';
         userQueries.insertAdmin(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
        // res.send("Record inserted");
         const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};

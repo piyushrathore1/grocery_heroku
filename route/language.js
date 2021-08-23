@@ -13,7 +13,7 @@ const userQueries = require("../controller/language_curd");
 
 })*/
 
-router.post('/getAllLanguage',(req,res)=>{
+/* router.post('/getAllLanguage',(req,res)=>{
     console.log("Display record:-");
     var a=[];
     var Data=[];
@@ -31,16 +31,22 @@ router.post('/getAllLanguage',(req,res)=>{
             Data={'Data':Data,'Success':true,'Message':'Language Data Successful Insert'};
             res.send(Data);
         })
-       /* userQueries.displayAdmin();
-        const a=[{'Data':1,'Success':true,'Message':'Data Successful Delete'}];
-        res.send(a);
-        console.log("Delete Sussesful");*/
+      
     }
     catch(err){
         console.log("this is erro",e);
     }
 
-});
+}); */
+router.post("/getalllanguagename",(req,res)=>{
+    userQueries.getalllanguagename(req,res);
+})
+
+
+router.post("/getAllLanguage",(req,res)=>{
+    userQueries.displayLanguage(req,res);
+})
+
 
 router.post("/getlanguagebyid/:id",(req,res)=>{
     userQueries.displaylanguagebyid(req,res);

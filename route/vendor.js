@@ -24,7 +24,7 @@ router.post('/getAllVendor',(req,res)=>{
         var query = { Vendorstatus: 0 };
         admin_schema.find(query,(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
-            console.log(admin);
+            //console.log(admin);
             //res.send(admin);
             admin.forEach((day,index)=>{
                 //a.push(day);
@@ -50,12 +50,13 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 })
 
 //router.post("/addAdmin",upload.array('upload_documents[]'),async(req,res)=>{
- router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
+ router.post("/addVendor",async(req,res)=>{
     var Name=req.body.Name;
     var MobileNo=req.body.MobileNo;
     var Email_id=req.body.Email_id;
     var Password=req.body.Password;
     var status=req.body.status;
+    console.log(req.file);
     //Single FIle Uploaded upload.single('upload_documents')
     if(req.file){
         var imageBuffer = request.file.buffer;
@@ -71,6 +72,7 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 
         //new
         var upload_documents=path1;
+
         //f
     }else{
         console.log("file path is not set");
@@ -98,6 +100,7 @@ router.post("/getvendorbyid/:id",(req,res)=>{
         const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};
         res.send(a);
         console.log("Data Insert Sussesful");
+
     }
     catch(e){
         console.log("Error in insert",e);

@@ -24,7 +24,7 @@ router.post('/getAllVendor',(req,res)=>{
         var query = { Vendorstatus: 0 };
         admin_schema.find(query,(err,admin)=>{
             if(err) console.warn("Error in Get Method:-");
-            //console.log(admin);
+            console.log(admin);
             //res.send(admin);
             admin.forEach((day,index)=>{
                 //a.push(day);
@@ -50,31 +50,27 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 })
 
 //router.post("/addAdmin",upload.array('upload_documents[]'),async(req,res)=>{
- router.post("/addVendor",async(req,res)=>{
+ router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
     var Name=req.body.Name;
     var MobileNo=req.body.MobileNo;
     var Email_id=req.body.Email_id;
     var Password=req.body.Password;
     var status=req.body.status;
-    console.log(req.body);
-    console.log(req.file.upload_documents);
-    
     //Single FIle Uploaded upload.single('upload_documents')
-    if(req.body.upload_documents){
-        var imageBuffer = req.file.upload_documents.buffer;
-        console.log("Image Buffer :"+imageBuffer);
+    if(req.file){
+        /* var imageBuffer = request.file.buffer;
+        console.log("Image Buffer :"+imageBuffer)
         //old
         //var imageName = 'public/images/map.png';
         //main
         var imageName = '/vendor_'+Date.now()+'.png';
-        var path1 = fs.createWriteStream(imageName).write(imageBuffer);
+        var path1 = fs.createWriteStream(imageName).write(imageBuffer); */
         //old
-        /* var upload_documents=req.file.path;
-        console.log("path :"+upload_documents); */
+        var upload_documents=req.file.path;
+        console.log("path :"+upload_documents);
 
         //new
-        var upload_documents=path1;
-
+        /* var upload_documents=path1; */
         //f
     }else{
         console.log("file path is not set");
@@ -91,7 +87,7 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     try{
         //console.log(req.file.path);
         // image upload on cloud
-        const result = await cloudinary.uploader.upload(path1);
+        const result = await cloudinary.uploader.upload(req.file.path);
         //console.log(result);
         var upload_documents=result.secure_url;
         var cloudinary_id=result.public_id;
@@ -102,7 +98,6 @@ router.post("/getvendorbyid/:id",(req,res)=>{
         const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};
         res.send(a);
         console.log("Data Insert Sussesful");
-
     }
     catch(e){
         console.log("Error in insert",e);

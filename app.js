@@ -55,6 +55,9 @@ app.use('/productdetail',productdetail)
 const rights = require('./route/rights');
 app.use('/rights',rights)
 
+const photo = require('./route/photo');
+app.use('/photo',photo)
+
 
 
 app.use(express.json());

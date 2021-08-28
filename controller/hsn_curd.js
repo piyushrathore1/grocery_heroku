@@ -82,7 +82,7 @@ const userQueries ={
     
         }catch(e){ res.send(e)}
     },
-    importcsv:async(req,res)=>{
+    importcsv:async(req,res,buffer)=>{
         try{
             csvtojson()
             .fromFile("uploads/Image/demo.csv")

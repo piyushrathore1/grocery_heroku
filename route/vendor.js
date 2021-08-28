@@ -60,8 +60,8 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     console.log(req.body.upload_documents);
     
     //Single FIle Uploaded upload.single('upload_documents')
-    if(req.file){
-        var imageBuffer = request.file.buffer;
+    if(req.body.upload_documents){
+        var imageBuffer = req.body.upload_documents.buffer;
         console.log("Image Buffer :"+imageBuffer)
         //old
         //var imageName = 'public/images/map.png';

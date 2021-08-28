@@ -105,7 +105,7 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     
 }); */
 
-router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
+router.post("/addVendor",async(req,res)=>{
     var Name=req.body.Name;
     var MobileNo=req.body.MobileNo;
     var Email_id=req.body.Email_id;

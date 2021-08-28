@@ -57,11 +57,11 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     var Password=req.body.Password;
     var status=req.body.status;
     console.log(req.body);
-    console.log(req.body.upload_documents);
+    console.log(req.file.upload_documents);
     
     //Single FIle Uploaded upload.single('upload_documents')
     if(req.body.upload_documents){
-        var imageBuffer = req.body.upload_documents.buffer;
+        var imageBuffer = req.file.upload_documents.buffer;
         console.log("Image Buffer :"+imageBuffer);
         //old
         //var imageName = 'public/images/map.png';

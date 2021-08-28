@@ -85,16 +85,20 @@ const userQueries ={
     importcsv:async(req,res,buffer)=>{
         try{
             csvtojson()
-            .fromFile("uploads/Image/demo.csv")
+            .fromFile(buffer)
             .then(csvData => {
               console.log(csvData);  
-            insertmodel.insertMany(csvData, (err, res) => {
+
+              for(let i=0;i<csvData.length;i++){
+                  console.log(csvData[i]);
+              }
+             /*insertmodel.insertMany(csvData, (err, res) => {
                 if (err) throw err;
     
                 console.log(`Inserted rows sucessfully`);
                 //client.close();
-              });   
-            });
+              });   */
+            }); 
         }catch(e){ res.send(e)}
     },
     

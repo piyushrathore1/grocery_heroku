@@ -21,10 +21,10 @@ router.post('/importcsv',upload.single('hsnfile'),async(req,res)=>{
     if(req.file){
         /* var upload_documents=req.file.path
         console.log(upload_documents) */
-        const buffer = fs.readFileSync(req.file.path);
-        console.log("Buffer"+buffer);
+        //const buffer = fs.readFileSync(req.file.path);
+        //console.log("Buffer"+buffer);
         console.log("FilePath"+req.file.path);
-
+        const buffer = req.file.path;
         userQueries.importcsv(req,res,buffer);
 
     }else{

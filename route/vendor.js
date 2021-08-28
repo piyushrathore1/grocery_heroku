@@ -113,10 +113,11 @@ router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
     // var status=req.body.status;
     console.log("asd");
     //console.log(req);
-    //console.log(req.files.filename);
-    //console.log(req.files.upload_documents);
+    console.log(req.file.filename);
+    console.log(req.file.upload_documents);
+    console.log(req.files.upload_documents);
     console.log(req.MultipartRequest);
-
+    console.log(request.files);
     saveImage(req.body.filename, req.body.upload_documents);
     // if(req.file){
     //     var upload_documents=req.file.path;

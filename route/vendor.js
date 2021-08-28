@@ -112,7 +112,7 @@ router.post("/addVendor",async(req,res)=>{
     // var Password=req.body.Password;
     // var status=req.body.status;
     
-    console.log(req.files.filename);
+    //console.log(req.files.filename);
     console.log(req.files.upload_documents);
 
     saveImage(req.body.filename, req.body.upload_documents);

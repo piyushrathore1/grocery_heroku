@@ -106,42 +106,46 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 }); */
 
 router.post("/addVendor",async(req,res)=>{
-    var Name=req.body.Name;
-    var MobileNo=req.body.MobileNo;
-    var Email_id=req.body.Email_id;
-    var Password=req.body.Password;
-    var status=req.body.status;
+    // var Name=req.body.Name;
+    // var MobileNo=req.body.MobileNo;
+    // var Email_id=req.body.Email_id;
+    // var Password=req.body.Password;
+    // var status=req.body.status;
     
-    saveImage(req.body.upload_documents, req.body.keyname);
-    if(req.file){
-        var upload_documents=req.file.path;
-        console.log("path :"+upload_documents);
+    console.log(req.body.filename);
+    console.log(req.body.upload_documents);
 
-        //new
-        /* var upload_documents=path1; */
-        //f
-    }else{
-        console.log("file path is not set");
-    }
-    try{
-        //console.log(req.file.path);
-        // image upload on cloud
-        const result = await cloudinary.uploader.upload(req.file.path);
-        //console.log(result);
-        var upload_documents=result.secure_url;
-        var cloudinary_id=result.public_id;
-      //var upload_documents = '';
-     // var cloudinary_id = '';
-        userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
-       // res.send("Record inserted");
-        const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};
-        res.send(a);
-        console.log("Data Insert Sussesful");
-    }
-    catch(e){
-        console.log("Error in insert",e);
-    }
+    saveImage(req.body.filename, req.body.upload_documents);
+    // if(req.file){
+    //     var upload_documents=req.file.path;
+    //     console.log("path :"+upload_documents);
+
+    //     //new
+    //     /* var upload_documents=path1; */
+    //     //f
+    // }else{
+    //     console.log("file path is not set");
+    // }
+    // try{
+    //     //console.log(req.file.path);
+    //     // image upload on cloud
+    //     const result = await cloudinary.uploader.upload(req.file.path);
+    //     //console.log(result);
+    //     var upload_documents=result.secure_url;
+    //     var cloudinary_id=result.public_id;
+    //   //var upload_documents = '';
+    //  // var cloudinary_id = '';
+    //     userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
+    //    // res.send("Record inserted");
+    //     const a={'Data':1,'Success':true,'Message':'Vendor Data Successful Insert'};
+    //     res.send(a);
+    //     console.log("Data Insert Sussesful");
+    // }
+    // catch(e){
+    //     console.log("Error in insert",e);
+    // }
     function saveImage(filename, data){
+        ARTWORK_PATH = "/uploads/";
         var myBuffer = new Buffer(data.length);
         for (var i = 0; i < data.length; i++) {
             myBuffer[i] = data[i];

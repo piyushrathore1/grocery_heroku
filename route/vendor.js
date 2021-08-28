@@ -105,16 +105,17 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     
 }); */
 
-router.post("/addVendor",async(req,res)=>{
+router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
     // var Name=req.body.Name;
     // var MobileNo=req.body.MobileNo;
     // var Email_id=req.body.Email_id;
     // var Password=req.body.Password;
     // var status=req.body.status;
-    console.log(req);
+    console.log("asd");
+    //console.log(req);
     //console.log(req.files.filename);
     //console.log(req.files.upload_documents);
-    //console.log(request.body.upload_documents);
+    console.log(req.MultipartRequest);
 
     saveImage(req.body.filename, req.body.upload_documents);
     // if(req.file){

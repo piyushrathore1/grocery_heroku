@@ -17,7 +17,9 @@ var upload = multer({
         if(
             file.mimetype == "image/jpg" ||
             file.mimetype == "image/jpeg" ||
-            file.mimetype == "image/png" 
+            file.mimetype == "image/png" ||
+            file.mimetype == "text/csv" ||
+            file.mimetype == "text/plain"
             
         ){
             callback(null,true)
@@ -27,7 +29,7 @@ var upload = multer({
         }
     },
     limits:{
-        fieldSize:1024 * 1024 *2
+       // fieldSize:1024 * 1024 *2
     }
 })
 

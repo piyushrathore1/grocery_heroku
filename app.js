@@ -55,6 +55,8 @@ app.use('/productdetail',productdetail)
 const rights = require('./route/rights');
 app.use('/rights',rights)
 
+
+
 app.use(express.json());
 //app.use(express.urlencoded({extended:true}));
 

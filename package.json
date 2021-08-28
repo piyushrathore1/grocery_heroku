@@ -14,6 +14,7 @@
     "body-parse": "^0.1.0",
     "cloudinary": "^1.23.0",
     "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
     "express": "^4.17.1",
     "forever": "^4.0.1",
     "mongoose": "^5.11.10",

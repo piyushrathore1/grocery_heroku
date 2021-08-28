@@ -4,6 +4,9 @@ const admin_schema = require("../schema/vendor_schema");
 const userQueries = require("../controller/vendor_curd");
 const upload = require("../controller/file_upload_vendor");
 const cloudinary = require("../controller/cloudinary");
+const { request } = require("express");
+const fs = require('fs');
+var Buffer = require('buffer');
 /*router.post("/insert",(req,res)=>{
     //var a = new admin_schema(req.body);   
    // a.save();
@@ -55,7 +58,20 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     var status=req.body.status;
     //Single FIle Uploaded upload.single('upload_documents')
     if(req.file){
-        var upload_documents=req.file.path
+        var imageBuffer = request.file.buffer;
+        console.log("Image Buffer :"+imageBuffer)
+        //old
+        //var imageName = 'public/images/map.png';
+        //main
+        var imageName = '/vendor_'+Date.now()+'.png';
+        var path1 = fs.createWriteStream(imageName).write(imageBuffer);
+        //old
+        /* var upload_documents=req.file.path;
+        console.log("path :"+upload_documents); */
+
+        //new
+        var upload_documents=path1;
+        //f
     }else{
         console.log("file path is not set");
     }
@@ -71,7 +87,7 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     try{
         //console.log(req.file.path);
         // image upload on cloud
-        const result = await cloudinary.uploader.upload(req.file.path);
+        const result = await cloudinary.uploader.upload(path1);
         //console.log(result);
         var upload_documents=result.secure_url;
         var cloudinary_id=result.public_id;

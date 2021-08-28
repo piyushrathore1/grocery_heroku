@@ -1,0 +1,43 @@
+<form  (ngSubmit)="onSubmit(billingform)" [formGroup]="billingform" >
+                  <input class="form-control" type="hidden" value=""  [(ngModel)]="this.defaddressid" formControlName="id"/>  
+                  <div class=" col-lg-12 form-group" ngbDropdown style="padding: 5px;">  
+                    <label class="main-color">Full Name </label> <br/>
+                    <input class="form-control" type="text" value=""  [(ngModel)]="this.fname" formControlName="fullname"/>  
+                  </div>
+                  <div class=" col-lg-12 form-group" ngbDropdown style="padding: 5px;"> 
+                    <label class="main-color">Company Name (Optional)</label> <br/>
+                    <input class="form-control"  type="text" [(ngModel)]="this.cname" formControlName="companyname"/>  
+                  </div>
+                  <div class=" col-lg-12 form-group" ngbDropdown style="padding: 5px;"> 
+                    <label class="main-color">Address</label> <br/>
+                    <input class="form-control" type="text" [(ngModel)]="this.address" formControlName="address"  /> 
+                  </div>
+                  <!-- value=" {{d.AddressForName !='' ? 'd.AddressForName' :''}}" 
+                  [(ngModel)]="d.AddressCompanyName"-->
+                  <div class=" col-lg-12 form-group" ngbDropdown style="padding: 5px;"> 
+                    <label class="main-color">Town / City</label> <br/>
+                    <input  class="form-control" type="text" [(ngModel)]="this.city" formControlName="city"/>  
+                  </div>
+                  <div class=" col-lg-12 form-group" ngbDropdown style="padding: 5px;"> 
+                    <label class="main-color">Pincode</label> <br/>
+                    <input class="form-control"  type="text" [(ngModel)]="this.pincode" formControlName="pincode" />  
+                  </div>
+                  <div class=" col-lg-12 form-group" ngbDropdown style="padding: 5px;"> 
+                    <label class="main-color">Mobile No</label> <br/>
+                    <input class="form-control"  type="text" [(ngModel)]="this.mobno" formControlName="mobileno"/>  
+                  </div>
+                  <div class=" col-lg-12 form-group" ngbDropdown style="padding: 5px;"> 
+                    <label class="main-color">Email Address</label> <br/>
+                    <input class="form-control" type="email" [(ngModel)]="this.email" formControlName="email"/>  
+                  </div>
+
+                  <div class="form-group">
+                     
+                 
+                  
+                     <button class="form-control"[disabled]="!billingform.valid" type="submit " class="btn porder mt-2">PLACE ORDER</button> 
+                  </div>
+                  <!-- <div class="search-button" style="padding: 10px;" >
+                    <button class="btn btn-lg btn-info" type="submit" value="submit" [disabled]="!searchForm.valid"  >Search</button>
+                  </div> -->        
+                </form>

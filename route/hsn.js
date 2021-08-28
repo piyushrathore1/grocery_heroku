@@ -2,16 +2,44 @@ const express = require("express");
 const router =  express.Router();
 const admin_schema = require("../schema/hsn_schema");
 const userQueries = require("../controller/hsn_curd");
+const upload = require("../controller/file_upload_all");
+const cloudinary = require("../controller/cloudinary");
+const fs = require('fs');
+
+/* const buffer = fs.readFileSync('AuthHistoryReport.csv'); */
 //const upload = require("../controller/file_upload");
 //const cloudinary = require("../controller/cloudinary");
 /*router.post("/insert",(req,res)=>{
     //var a = new admin_schema(req.body);   
    // a.save();
-    admin_schema.create(req.body).then((result)=>{
+    admin_schema.create(req. body).then((result)=>{
         res.send(result);
     })
 
 })*/
+router.post('/importcsv',upload.single('hsnfile'),async(req,res)=>{
+    if(req.file){
+        /* var upload_documents=req.file.path
+        console.log(upload_documents) */
+        const buffer = fs.readFileSync(req.file.path);
+        console.log("Buffer"+buffer)
+        userQueries.importcsv(req,res,buffer);
+
+    }else{
+        console.log("file path is not set");
+    }
+    try{
+        //const result = await cloudinary.uploader.upload(req.file.path);
+       //console.log(result);
+      // var ProductImage=result.secure_url;
+      // console.log("path "+ProductImage) 
+    //userQueries.importcsv(req,res,buffer);
+    }
+    catch(e){
+        console.log("Error in insert",e);
+    }
+    
+})
 
 router.post('/getAllHsn',(req,res)=>{
     console.log("Display record:-");

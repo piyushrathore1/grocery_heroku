@@ -1,5 +1,7 @@
 const conn = require("../config/db_config");
 const insertmodel = require('../schema/hsn_schema');
+const mongodb = require("mongodb").MongoClient;
+const csvtojson = require("csvtojson");
  
 const userQueries ={
     insertHsn:(Code,Tax,status) => {
@@ -79,7 +81,22 @@ const userQueries ={
     
     
         }catch(e){ res.send(e)}
-    }
+    },
+    importcsv:async(req,res)=>{
+        try{
+            csvtojson()
+            .fromFile("uploads/Image/demo.csv")
+            .then(csvData => {
+              console.log(csvData);  
+            insertmodel.insertMany(csvData, (err, res) => {
+                if (err) throw err;
+    
+                console.log(`Inserted rows sucessfully`);
+                //client.close();
+              });   
+            });
+        }catch(e){ res.send(e)}
+    },
     
 }
 module.exports = userQueries;

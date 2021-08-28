@@ -56,7 +56,7 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     var Email_id=req.body.Email_id;
     var Password=req.body.Password;
     var status=req.body.status;
-    console.log(req.body);
+    console.log(req.body.Name);
     //Single FIle Uploaded upload.single('upload_documents')
     if(req.file){
         var imageBuffer = request.file.buffer;

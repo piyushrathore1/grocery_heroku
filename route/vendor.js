@@ -111,9 +111,10 @@ router.post("/addVendor",async(req,res)=>{
     // var Email_id=req.body.Email_id;
     // var Password=req.body.Password;
     // var status=req.body.status;
-    
+    console.log(req);
     //console.log(req.files.filename);
-    console.log(req.files.upload_documents);
+    //console.log(req.files.upload_documents);
+    //console.log(request.body.upload_documents);
 
     saveImage(req.body.filename, req.body.upload_documents);
     // if(req.file){

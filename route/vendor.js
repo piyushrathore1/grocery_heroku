@@ -149,12 +149,13 @@ router.post('/upload', (req, res, next) => {
         var filename = req.body.filename;
         var base64url = req.body.base64url;  //receiving base64 url from frontend
         var base64Str = "data:image/png;base64," + base64url  //changing base64url to base64string
-        var path = './uploads/Image';
+        var path = '.';
         var optionalObj = {
             'fileName': filename,
             'type': 'png'
         };
         base64ToImage(base64Str, path, optionalObj); //saving
+        
         var imageInfo = base64ToImage(base64Str, path, optionalObj);
         console.log(imageInfo);
         var fileLink = '/' + filename;

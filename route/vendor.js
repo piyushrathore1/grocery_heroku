@@ -24,13 +24,13 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(cors());
 app.use("*", cors());
-app.use(express.static("public")); //static folder so that files can be received using a link
+app.use(express.static("uploads")); //static folder so that files can be received using a link
 app.use(express.json());
-//multer setup to get file and save it to public folder
+//multer setup to get file and save it to uploads folder
 
 const multerStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "public/");
+        cb(null, "uploads/");
     },
     filename: (req, file, cb) => {
         cb(null, `${file.originalname}`);

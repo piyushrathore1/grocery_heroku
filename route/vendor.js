@@ -7,6 +7,38 @@ const cloudinary = require("../controller/cloudinary");
 const { request } = require("express");
 const fs = require('fs');
 var Buffer = require('buffer');
+//new code for file upload 
+const multer = require('multer'); //multer package
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const base64ToImage = require('base64-to-image');
+const {
+    v4: uuidv4
+} = require("uuid");
+const app = express();
+app.use(bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000
+}))
+app.use(cors());
+app.use("*", cors());
+app.use(express.static("public")); //static folder so that files can be received using a link
+app.use(express.json());
+//multer setup to get file and save it to public folder
+
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${file.originalname}`);
+    },
+});
+
+const upload = multer({
+    storage: multerStorage,
+});
 /*router.post("/insert",(req,res)=>{
     //var a = new admin_schema(req.body);   
    // a.save();
@@ -105,7 +137,48 @@ router.post("/getvendorbyid/:id",(req,res)=>{
     
 }); */
 
-router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
+//router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
+//file upload code start kd  29/08/2021
+router.post('/upload', (req, res, next) => {
+        const uuid = uuidv4();
+        console.log(req.body.filename);
+        console.log(req.body.base64url);
+        var filename = req.body.filename;
+        var base64url = req.body.base64url;  //receiving base64 url from frontend
+        var base64Str = "data:image/png;base64," + base64url  //changing base64url to base64string
+        var path = './uploads/';
+        var optionalObj = {
+            'fileName': filename,
+            'type': 'png'
+        };
+        base64ToImage(base64Str, path, optionalObj); //saving
+        var imageInfo = base64ToImage(base64Str, path, optionalObj);
+        var fileLink = '/' + filename;
+        //const query = `INSERT INTO Files (filesid,filelink,userid) VALUES ('${uuid}','${req.body.filename}','${req.body.userId}')`;
+      //code to push filelink and other details to backend  
+      connection.query(query, function (err, result) {
+            if (err) {
+                console.log(err);
+                var response = {
+                    message: "Error: Could not upload",
+                };
+                res.writeHead(404, {
+                    "Content-Type": "application/json",
+                });
+                return res.end(JSON.stringify(response));
+            } else {
+                var response = {
+                    message: "Files Added succesfully",
+                };
+                res.writeHead(200, {
+                    "Content-Type": "application/json",
+                });
+                return res.end(JSON.stringify(response));
+            }
+        });
+    });
+//file upload code end kd  29/08/2021
+router.post("/addVendor",async(req,res)=>{
     // var Name=req.body.Name;
     // var MobileNo=req.body.MobileNo;
     // var Email_id=req.body.Email_id;
@@ -113,11 +186,11 @@ router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
     // var status=req.body.status;
     console.log("asd");
     //console.log(req);
-    console.log(req.file.filename);
-    console.log(req.file.upload_documents);
+    //console.log(req.file.filename);
+    //console.log(req.file.upload_documents);
     console.log(req.files.upload_documents);
     console.log(req.MultipartRequest);
-    console.log(request.files);
+    //console.log(request.files);
     saveImage(req.body.filename, req.body.upload_documents);
     // if(req.file){
     //     var upload_documents=req.file.path;

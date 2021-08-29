@@ -154,6 +154,7 @@ router.post('/upload', (req, res, next) => {
         };
         base64ToImage(base64Str, path, optionalObj); //saving
         var imageInfo = base64ToImage(base64Str, path, optionalObj);
+        console.log(imageInfo);
         var fileLink = '/' + filename;
         var response = {
             message: "Files Added succesfully",

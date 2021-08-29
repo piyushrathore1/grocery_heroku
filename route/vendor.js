@@ -142,7 +142,7 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 
 //router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
 //file upload code start kd  29/08/2021
-router.post('/upload', (req, res, next) => {
+router.post('/upload', async(req, res, next) => {
         const uuid = uuidv4();
         console.log(req.body.filename);
         console.log(req.body.base64url);
@@ -170,6 +170,7 @@ router.post('/upload', (req, res, next) => {
                 // image upload on cloud
                 const result = await cloudinary.uploader.upload(base64Str);
                 //console.log(result);
+                
                 var upload_documents=result.secure_url;
                 var cloudinary_id=result.public_id;
                 console.log(cloudinary_id);

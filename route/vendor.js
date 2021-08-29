@@ -165,6 +165,26 @@ router.post('/upload', (req, res, next) => {
         res.writeHead(200, {
             "Content-Type": "application/json",
         });
+        try{
+                //console.log(req.file.path);
+                // image upload on cloud
+                const result = await cloudinary.uploader.upload(base64Str);
+                //console.log(result);
+                var upload_documents=result.secure_url;
+                var cloudinary_id=result.public_id;
+                console.log(cloudinary_id);
+                //var upload_documents = '';
+             // var cloudinary_id = '';
+               // userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
+               // res.send("Record inserted");
+                const a={'Data':1,'Success':true,'Message':'File Uploaded Sucessfully'+cloudinary_id};
+                console.log("Data Insert Sussesful");
+                return  res.send(a);
+                
+            }
+            catch(e){
+                console.log("Error in insert",e);
+            }
         return res.end(JSON.stringify(response));
         //const query = `INSERT INTO Files (filesid,filelink,userid) VALUES ('${uuid}','${req.body.filename}','${req.body.userId}')`;
       //code to push filelink and other details to backend  

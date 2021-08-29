@@ -142,8 +142,8 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 //file upload code start kd  29/08/2021
 router.post('/upload', (req, res, next) => {
         const uuid = uuidv4();
-        console.log(req.body.filename);
-        console.log(req.body.base64url);
+        //console.log(req.body.filename);
+        //console.log(req.body.base64url);
         var filename = req.body.filename;
         var base64url = req.body.base64url;  //receiving base64 url from frontend
         var base64Str = "data:image/png;base64," + base64url  //changing base64url to base64string
@@ -155,9 +155,16 @@ router.post('/upload', (req, res, next) => {
         base64ToImage(base64Str, path, optionalObj); //saving
         var imageInfo = base64ToImage(base64Str, path, optionalObj);
         var fileLink = '/' + filename;
+        var response = {
+            message: "Files Added succesfully",
+        };
+        res.writeHead(200, {
+            "Content-Type": "application/json",
+        });
+        return res.end(JSON.stringify(response));
         //const query = `INSERT INTO Files (filesid,filelink,userid) VALUES ('${uuid}','${req.body.filename}','${req.body.userId}')`;
       //code to push filelink and other details to backend  
-      connection.query(query, function (err, result) {
+      //connection.query(query, function (err, result) {
             if (err) {
                 console.log(err);
                 var response = {
@@ -176,8 +183,8 @@ router.post('/upload', (req, res, next) => {
                 });
                 return res.end(JSON.stringify(response));
             }
-        });
-    });
+        //});
+});
 //file upload code end kd  29/08/2021
 router.post("/addVendor",async(req,res)=>{
     // var Name=req.body.Name;

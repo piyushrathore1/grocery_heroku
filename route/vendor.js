@@ -28,14 +28,16 @@ app.use(express.static("uploads")); //static folder so that files can be receive
 app.use(express.json());
 //multer setup to get file and save it to uploads folder
 
-const multerStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/");
+
+var multerStorage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null,'uploads/Image')
     },
-    filename: (req, file, cb) => {
-        cb(null, `${file.originalname}`);
-    },
-});
+    filename: function(req,file,cb){
+        let ext =path.extname(file.originalname)
+        cb(null,Date.now() + ext)
+    }
+})
 
 const upload = multer({
     storage: multerStorage,
@@ -147,7 +149,7 @@ router.post('/upload', (req, res, next) => {
         var filename = req.body.filename;
         var base64url = req.body.base64url;  //receiving base64 url from frontend
         var base64Str = "data:image/png;base64," + base64url  //changing base64url to base64string
-        var path = './uploads/';
+        var path = './uploads/Image';
         var optionalObj = {
             'fileName': filename,
             'type': 'png'

@@ -144,8 +144,8 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 //file upload code start kd  29/08/2021
 router.post('/upload', (req, res, next) => {
         const uuid = uuidv4();
-        //console.log(req.body.filename);
-        //console.log(req.body.base64url);
+        console.log(req.body.filename);
+        console.log(req.body.base64url);
         var filename = req.body.filename;
         var base64url = req.body.base64url;  //receiving base64 url from frontend
         var base64Str = "data:image/png;base64," + base64url  //changing base64url to base64string

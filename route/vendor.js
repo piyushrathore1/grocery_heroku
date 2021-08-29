@@ -2,7 +2,8 @@ const express = require("express");
 const router =  express.Router();
 const admin_schema = require("../schema/vendor_schema");
 const userQueries = require("../controller/vendor_curd");
-const upload = require("../controller/file_upload_vendor");
+//kd stopped for new file upload
+//const upload = require("../controller/file_upload_vendor");
 const cloudinary = require("../controller/cloudinary");
 const { request } = require("express");
 const fs = require('fs');

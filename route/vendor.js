@@ -143,45 +143,55 @@ router.post("/getvendorbyid/:id",(req,res)=>{
 //router.post("/addVendor",upload.single('upload_documents'),async(req,res)=>{
 //file upload code start kd  29/08/2021
 router.post('/upload', async(req, res, next) => {
+
+        var Name=req.body.Name;
+        var MobileNo=req.body.MobileNo;
+        var Email_id=req.body.Email_id;
+        var Password=req.body.Password;
+        var status=req.body.status;
+
         const uuid = uuidv4();
+        console.log("Name"+req.body.Name);
         console.log(req.body.filename);
         console.log(req.body.base64url);
-        var filename = req.body.filename;
+        //var filename = req.body.filename;
         var base64url = req.body.base64url;  //receiving base64 url from frontend
         var base64Str = "data:image/png;base64," + base64url  //changing base64url to base64string
-        var path = '/app/';
-        var optionalObj = {
-            'fileName': filename,
-            'type': 'png'
-        };
-        base64ToImage(base64Str, path, optionalObj); //saving
+        //var path = '/app/';
+        // var optionalObj = {
+        //     'fileName': filename,
+        //     'type': 'png'
+        // };
+        // base64ToImage(base64Str, path, optionalObj); //saving
         
-        var imageInfo = base64ToImage(base64Str, path, optionalObj);
-        console.log(imageInfo);
-        var fileLink = '/' + filename;
-        var response = {
-            message: "Files Added succesfully",
-        };
-        res.writeHead(200, {
-            "Content-Type": "application/json",
-        });
+        // var imageInfo = base64ToImage(base64Str, path, optionalObj);
+        // console.log("image info"+imageInfo);
+        // var fileLink = '/' + filename;
+        // var response = {
+        //     message: "Files Added succesfully",
+        // };
+        // res.writeHead(200, {
+        //     "Content-Type": "application/json",
+        // });
         try{
                 //console.log(req.file.path);
                 // image upload on cloud
                 const result = await cloudinary.uploader.upload(base64Str);
-                //console.log(result);
+                console.log("result"+result);
                 
                 var upload_documents=result.secure_url;
                 var cloudinary_id=result.public_id;
                 console.log(cloudinary_id);
                 //var upload_documents = '';
-             // var cloudinary_id = '';
-               // userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
+                // var cloudinary_id = '';
+                userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
                // res.send("Record inserted");
                 const a={'Data':1,'Success':true,'Message':'File Uploaded Sucessfully'+cloudinary_id};
                 console.log("Data Insert Sussesful");
-                return  res.send(a);
-                
+                //old
+                //return  res.send(a);
+                //new
+                return  res.end(JSON.stringify(a));
             }
             catch(e){
                 console.log("Error in insert",e);
@@ -190,7 +200,7 @@ router.post('/upload', async(req, res, next) => {
         //const query = `INSERT INTO Files (filesid,filelink,userid) VALUES ('${uuid}','${req.body.filename}','${req.body.userId}')`;
       //code to push filelink and other details to backend  
       //connection.query(query, function (err, result) {
-            if (err) {
+            /* if (err) {
                 console.log(err);
                 var response = {
                     message: "Error: Could not upload",
@@ -207,7 +217,7 @@ router.post('/upload', async(req, res, next) => {
                     "Content-Type": "application/json",
                 });
                 return res.end(JSON.stringify(response));
-            }
+            } */
         //});
 });
 //file upload code end kd  29/08/2021

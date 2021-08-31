@@ -45,14 +45,15 @@ const fs = require('fs');
 
 router.post('/importcsv',async(req,res)=>{
         console.log(req.body.filename);
-        console.log(req.body.base64url);
+       // console.log(req.body.base64url);
         //var filename = req.body.filename;
         var base64url = req.body.base64url;  //receiving base64 url from frontend
         var base64Str = "data:text/csv;base64," + base64url  //changing base64url to base64string
         try{
                 //console.log(req.file.path);
                 // image upload on cloud
-                uploadParams.put("resource_type", "csv")
+                //uploadParams.put("resource_type", "csv");
+                cloudinary.uploader.upload_tag_params.put("resource_type", "csv");
                 const result = await cloudinary.uploader.upload(base64Str);
                 console.log("result"+result);
                 

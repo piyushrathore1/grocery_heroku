@@ -5,7 +5,17 @@ const userQueries = require("../controller/hsn_curd");
 const upload = require("../controller/file_upload_all");
 const cloudinary = require("../controller/cloudinary");
 const fs = require('fs');
-
+const bodyParser = require("body-parser");
+const base64ToImage = require('base64-to-image');
+const {
+    v4: uuidv4
+} = require("uuid");
+const app = express();
+app.use(bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000
+}))
 
 /* const buffer = fs.readFileSync('AuthHistoryReport.csv'); */
 //const upload = require("../controller/file_upload");

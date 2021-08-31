@@ -91,6 +91,7 @@ const userQueries ={
 
               for(let i=0;i<csvData.length;i++){
                   console.log(csvData[i]);
+                  
               }
              /*insertmodel.insertMany(csvData, (err, res) => {
                 if (err) throw err;

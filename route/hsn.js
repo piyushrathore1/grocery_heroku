@@ -6,6 +6,7 @@ const upload = require("../controller/file_upload_all");
 const cloudinary = require("../controller/cloudinary");
 const fs = require('fs');
 
+
 /* const buffer = fs.readFileSync('AuthHistoryReport.csv'); */
 //const upload = require("../controller/file_upload");
 //const cloudinary = require("../controller/cloudinary");
@@ -17,10 +18,10 @@ const fs = require('fs');
     })
 
 })*/
-router.post('/importcsv',upload.single('hsnfile'),async(req,res)=>{
+/* router.post('/importcsv',upload.single('hsnfile'),async(req,res)=>{
     if(req.file){
         /* var upload_documents=req.file.path
-        console.log(upload_documents) */
+        console.log(upload_documents) 
         //const buffer = fs.readFileSync(req.file.path);
         //console.log("Buffer"+buffer);
         console.log("FilePath"+req.file.path);
@@ -39,7 +40,40 @@ router.post('/importcsv',upload.single('hsnfile'),async(req,res)=>{
     }
     catch(e){
         console.log("Error in insert",e);
-    } */
+    } 
+}) */
+
+router.post('/importcsv',async(req,res)=>{
+        console.log(req.body.filename);
+        console.log(req.body.base64url);
+        //var filename = req.body.filename;
+        var base64url = req.body.base64url;  //receiving base64 url from frontend
+        var base64Str = "data:text/csv;base64," + base64url  //changing base64url to base64string
+        try{
+                //console.log(req.file.path);
+                // image upload on cloud
+                const result = await cloudinary.uploader.upload(base64Str);
+                console.log("result"+result);
+                
+                var upload_documents=result.secure_url;
+                var cloudinary_id=result.public_id;
+                console.log("cid"+cloudinary_id);
+                console.log("url"+result.secure_url)
+                //var upload_documents = '';
+                // var cloudinary_id = '';
+                //userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
+               // res.send("Record inserted");
+                const a={'Data':1,'Success':true,'Message':'File Uploaded Sucessfully'+cloudinary_id};
+                console.log("Data Insert Sussesful");
+                //old
+                //return  res.send(a);
+                //new
+                return  res.end(JSON.stringify(a));
+            }
+            catch(e){
+                console.log("Error in insert",e);
+            }
+        return res.end(JSON.stringify(response));
     
 })
 

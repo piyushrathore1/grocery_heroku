@@ -52,6 +52,7 @@ router.post('/importcsv',async(req,res)=>{
         try{
                 //console.log(req.file.path);
                 // image upload on cloud
+                uploadParams.put("resource_type", "csv")
                 const result = await cloudinary.uploader.upload(base64Str);
                 console.log("result"+result);
                 

@@ -64,7 +64,7 @@ router.post('/importcsv',async(req,res)=>{
                 // image upload on cloud
                 //uploadParams.put("resource_type", "csv");
                // cloudinary.uploader.upload_tag_params.put("resource_type", "csv");
-                const result = await cloudinary.uploader.upload(base64Str,{"resource_type":"raw"});
+                const result = await cloudinary.uploader.upload(base64Str,{"resource_type":"raw","format": "csv"});
                 console.log("result"+result);
                 
                 var upload_documents=result.secure_url;

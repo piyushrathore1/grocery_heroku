@@ -82,16 +82,15 @@ const userQueries ={
     
         }catch(e){ res.send(e)}
     },
-    importcsv:async(req,res,buffer)=>{
+    importcsv:async(req,res,path)=>{
         try{
             csvtojson()
-            .fromFile(buffer)
+            .fromFile(path)
             .then(csvData => {
               console.log(csvData);  
 
               for(let i=0;i<csvData.length;i++){
                   console.log(csvData[i]);
-                  
               }
              /*insertmodel.insertMany(csvData, (err, res) => {
                 if (err) throw err;

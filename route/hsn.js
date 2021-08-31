@@ -67,7 +67,7 @@ router.post('/importcsv',async(req,res)=>{
                 const result = await cloudinary.uploader.upload(base64Str,{"resource_type":"raw","format": "csv"});
                 console.log("result"+result);
                 
-                var upload_documents=result.secure_url;
+                var path=result.secure_url;
                 var cloudinary_id=result.public_id;
                 console.log("cid"+cloudinary_id);
                 console.log("url"+result.secure_url)
@@ -75,6 +75,7 @@ router.post('/importcsv',async(req,res)=>{
                 // var cloudinary_id = '';
                 //userQueries.insertVendor(Name,MobileNo,Email_id,Password,status,upload_documents,cloudinary_id);
                // res.send("Record inserted");
+               userQueries.importcsv(req,res,path);
                 const a={'Data':1,'Success':true,'Message':'File Uploaded Sucessfully'+cloudinary_id};
                 console.log("Data Insert Sussesful");
                 //old

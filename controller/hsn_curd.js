@@ -85,7 +85,7 @@ const userQueries ={
     importcsv:async(req,res,path)=>{
         try{
             csvtojson()
-            .fromFile(path)
+            .fromFile("https://res.cloudinary.com/daty55v9i/raw/upload/v1630402202/kzw4a6lzrmwrfxnjrfkf.csv")
             .then(csvData => {
               console.log(csvData);  
 

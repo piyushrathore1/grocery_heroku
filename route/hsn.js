@@ -90,6 +90,10 @@ router.post('/importcsv',async(req,res)=>{
     
 })
 
+router.post('/importcsvdemo',async(req,res)=>{
+    userQueries.importcsv();
+})
+
 router.post('/getAllHsn',(req,res)=>{
     console.log("Display record:-");
     var a=[];

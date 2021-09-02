@@ -306,7 +306,7 @@ router.post("/deleteVendor/:id",(req,res)=>{
     }).catch((err)=>{console.warn(err)}) 
 });*/
 
-router.post('/updateVendor/:id',upload.single('upload_documents'),async(req,res)=>{
+router.post('/updateVendor/:id',async(req,res)=>{
     var id={_id:req.params.id};
     //var email_id={email_id:req.body.email_id};
     //var password={password:req.body.password};
@@ -317,16 +317,18 @@ router.post('/updateVendor/:id',upload.single('upload_documents'),async(req,res)
     var Email_id=req.body.Email_id;
     var Password=req.body.Password;
     var status=req.body.status;
+    var base64url = req.body.base64url;  //receiving base64 url from frontend
+    var base64Str = "data:image/png;base64," + base64url  //changing base64url to base64string
     //samu change
-    if(req.file){
+    /* if(req.file){
         var upload_documents=req.file.path
-    }
+    } */
     try{
-        if(upload_documents)
+        if(base64url)
         {
             console.log("selcted  file to update");
             //upload_documents=req.body.upload_documents;
-            const result = await cloudinary.uploader.upload(req.file.path);
+            const result = await cloudinary.uploader.upload(base64Str);
             
             upload_documents=result.secure_url;
             var cloudinary_id=result.public_id;
